@@ -1,19 +1,23 @@
-<?php // Γενικά χρησιμοποιούμε το data[Report] για ότι πρόκειται να γραφτεί στην βάση και
-      // το data[File] για την εικόνα που θα σωθεί στο δίσκο. Απο κει και πέρα σχεδιάζεις
-      // ότι θες                                                                    ?>
-<?php echo $this->Form->create('Report'); ?>
+<?php // Γενικά χρησιμοποιούμε το data[Report] για ότι πρόκειται να γραφτεί στην βάση ?>
+<?php echo $this->Form->create('Report', array('action' => 'create', "enctype" => "multipart/form-data")); ?>
        <fieldset>
           <legend>Add New Report</legend>
           <?php
+             // ΣΧΕΤΙΚΑ ΜΕ ΤΟ ΕΡΓΑΛΕΙΟ UPLOAD-CROP
+             // http://bakery.cakephp.org/articles/klagoggle_myopenid_com/2010/08/25/jquery-image-upload-crop
              // Έχω βάλει δοκιμαστικά διάφορα πεδία
-             //echo $this->Form->input('File.name',array('type'=>'file'));
-             echo $this->Form->input('Report.email');
-             echo $this->Form->input('Report.name');
-             echo $this->Form->input('Report.surname');
-             echo $this->Form->input('Report.phone_number');
-             echo $this->Form->input('Report.depth');
-             echo $this->Form->input('Report.crowd');
-             echo $this->Form->input('Report.date');
+             // Θεωρητικά θα πρέπει να ανεβαίνει μια φωτογραφία μέσω του 'image' και να γίνεται preview
+             // προς στιγμήν ανεβαίνει η εικόνα χωρίς θέμα, οπότε με javascript προσπαθείς να σώσεις στο 'image'
+             // τα στοιχεία όπως σώνονται και πρέπει να βρούμε τρόπο για preview...
+             echo $this->Form->input('image',array("type" => "file"));
+             // Πρέπει να αντιγραφεί αυτόματα το όνομα της εικόνας στο πεδίο main_photo της φόρμας...
+             echo $this->Form->hidden('main_photo');
+             echo $this->Form->input('date');
+             echo $this->Form->input('email');
+             echo $this->Form->input('name');
+             echo $this->Form->input('surname');
+             echo $this->Form->input('depth');
+             // κλπ κλπ
           ?>
        </fieldset>
 <?php echo $this->Form->end('Add Report');?>

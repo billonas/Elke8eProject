@@ -7,49 +7,45 @@
  */
 class ReportsController extends AppController{
     var $name = 'Reports';
-    public $helpers = array('Html', 'Form');
-    
-    
+    public $helpers = array('Html', 'Form', 'Cropimage', 'Js');
+    public $components = array('JqImgcrop');
+
+
+
+
     function create() {
         if (!empty($this->data)) {
-             $this->Report->create();
-//            $fileOK = $this->uploadFiles('img/files', $this->data['File']);
-//            // if file was uploaded ok  
-//            if(array_key_exists('urls', $fileOK)) {  
-//                // save the url in the form data  
-//                $this->data['Report']['main_photo'] = $fileOK['urls'][0];  
-                if ($this->Report->save($this->data['Report'])) {
-                    $this->Session->setFlash('The Report has been saved');
-                    //$this->redirect(array('action'=>'delete'), null, true);
-                } else {
-                    $this->Session->setFlash('Report not saved. Try again.');
-                }
-//            }
-//            else{
-//                if(array_key_exists('errors', $fileOK)) {  
-//                $this->Session->setFlash($fileOK['errors'][0]);
-//                }
-//            } 
+            $this->Report->create();
+            //$uploaded = 
+            $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
+//                $this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
+//                //$this->data['Report']['main_photo'] = $uploaded['imagePath'];
+//                //$this->set('uploaded',$uploaded);
+            if ($this->Report->save($this->data['Report'])) {
+                $this->Session->setFlash('The Report has been saved');
+            } else {
+                $this->Session->setFlash('Report not saved. Try again.');
+            }
         }
     }
     
     function edit($id = null) {
 //        if($this->Session->check('User')&&(($this->Session->read('User.user_type') == 'analyst')||($this->Session->read('User.user_type') == 'yperanalyst'))){
-            if (!empty($this->data)) {
-                if ($this->Report->save($this->data)) {
-                        $this->Session->setFlash('Report #'.$id.' has been updated ');
-                    } else {
-                        $this->Session->setFlash('Report #'.$id.' not updated. Try again.');
-                    }
+            if ($id==null) {
+                $this->Session->setFlash('Invalid ID');
+                $this->redirect(array('action'=>'table'), null, true);
             }
-            else{
-                if($id!=null){
-                    $this->set('report', $this->Report->read($id));
-                }
-                else{
-                    $this->Session->setFlash('Invalid ID');
+            if(empty($this->data)) {
+                $this->data = $this->Report->findById($id);
+            } 
+            else {
+                if ($this->Report->save($this->data)) {
+                    $this->Session->setFlash('The Report has been saved');
                     $this->redirect(array('action'=>'table'), null, true);
-                }
+                } 
+                else {
+                    $this->Session->setFlash('The Report could not be saved.Please, try again.');
+                }    
             }
 //        }
 //        else{
@@ -61,6 +57,11 @@ class ReportsController extends AppController{
     function delete($id = null) {
 //        if($this->Session->check('User')&&($this->Session->read('User.user_type') == 'yperanalyst')){
             if($id!=null){
+                $this->Session->setFlash('Invalid ID');
+                $this->redirect(array('action'=>'table'), null, true);
+            }
+            else{
+                // Διαγραφή εικόνων
                 if($this->set('report',$this->Report->delete($id))){
                     $this->Session->setFlash('Report #'.$id.' deleted');
                     $this->redirect(array('action'=>'table'), null, true);
@@ -69,10 +70,6 @@ class ReportsController extends AppController{
                     $this->Session->setFlash('Report #'.$id.' not deleteed');
                     $this->redirect(array('action'=>'table'), null, true);
                 }
-            }
-            else{
-                $this->Session->setFlash('Invalid ID');
-                $this->redirect(array('action'=>'table'), null, true);
             }
 //        }
 //        else{
@@ -83,8 +80,12 @@ class ReportsController extends AppController{
     
     function view($id = null) {
 //        if($this->Session->check('User')) {  
-            if($id!=null){
-                $this->set('report',$this->Report->read($id));
+            if($id==null){
+                $this->Session->setFlash('Invalid ID');
+                $this->redirect();
+            }
+            else{
+                $this->set('report',$this->Report->findById($id));
             }
 //        }
 //        else{
@@ -100,7 +101,7 @@ class ReportsController extends AppController{
 
             }
             else{
-                $this->set('reports', $this->Report->find('all'));
+                $this->set('reports', $this->Report->find('all', array('order' => array('created' => 'desc'))));
             }
 //        }
 //        else{
