@@ -155,3 +155,158 @@
 #12 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
 #13 /Applications/MAMP/htdocs/Elke8eProject/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #14 {main}
+2012-04-12 04:19:00 Error: [MissingControllerException] Controller class Index.phpController could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-12 04:19:52 Error: [MissingControllerException] Controller class Index.phpController could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-12 19:27:01 Error: [MissingActionException] Action ReportsController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 00:47:38 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 01:29:21 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 01:30:07 Error: [MissingActionException] Action ReportsController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 01:32:06 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 01:33:08 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 02:29:16 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 02:29:18 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 02:30:19 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\submit.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 02:30:38 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\submit.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 16:50:53 Error: [MissingTableException] Table hot_species for model HotSpecie was not found in datasource default.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(3398): Model->setSource('hot_species')
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(2653): Model->getDataSource()
+#2 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(59): Model->find('all')
+#3 [internal function]: HotSpeciesController->show()
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#5 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-04-14 16:53:55 Error: [MissingTableException] Table hot_species for model HotSpecie was not found in datasource default.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(3398): Model->setSource('hot_species')
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(2653): Model->getDataSource()
+#2 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(37): Model->find(Array)
+#3 [internal function]: HotSpeciesController->update('2')
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#5 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-04-14 16:54:11 Error: [MissingTableException] Table hot_species for model HotSpecie was not found in datasource default.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(3398): Model->setSource('hot_species')
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(2653): Model->getDataSource()
+#2 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(37): Model->find(Array)
+#3 [internal function]: HotSpeciesController->update('2')
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#5 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-04-14 16:54:13 Error: [MissingTableException] Table hot_species for model HotSpecie was not found in datasource default.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(3398): Model->setSource('hot_species')
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(2653): Model->getDataSource()
+#2 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(37): Model->find(Array)
+#3 [internal function]: HotSpeciesController->update('2')
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#5 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-04-14 16:54:53 Error: [MissingTableException] Table hot_species for model HotSpecie was not found in datasource default.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(3398): Model->setSource('hot_species')
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(2653): Model->getDataSource()
+#2 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(61): Model->find('all')
+#3 [internal function]: HotSpeciesController->show()
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#5 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#6 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#7 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2012-04-14 17:07:35 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\show.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 17:07:45 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\show.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 18:13:25 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\show.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 18:13:49 Error: [MissingActionException] Action ReportsController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-14 18:38:48 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\show.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 18:39:08 Error: [MissingViewException] View file "C:\xampp\htdocs\Elke8eProject\app\View\HotSpecies\show.ctp" is missing.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-14 18:52:14 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
