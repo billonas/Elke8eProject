@@ -49,7 +49,7 @@ class HotSpeciesController extends AppController{
     }
     
     function delete($id = null) {
-        if ($id != null) {
+        if ($id == null) {
             $this->Session->setFlash('Invalid id for HotSpecie');
             $this->redirect(array('action'=>'show'), null, true);
         }
