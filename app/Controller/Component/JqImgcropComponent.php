@@ -1,6 +1,7 @@
 <?php  
-class JqImgcropComponent extends Object { 
-
+class JqImgcropComponent extends Component { 
+    //CHANGES: extends Object
+    
     function uploadImage($uploadedInfo, $uploadTo, $prefix){ 
         $webpath = $uploadTo; 
         $upload_dir = WWW_ROOT.str_replace("/", DS, $uploadTo); 

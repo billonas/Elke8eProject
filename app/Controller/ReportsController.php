@@ -16,14 +16,16 @@ class ReportsController extends AppController{
     function create() {
         if (!empty($this->data)) {
             $this->Report->create();
-            //$uploaded = 
-            $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
-//                $this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
-//                //$this->data['Report']['main_photo'] = $uploaded['imagePath'];
-//                //$this->set('uploaded',$uploaded);
             if ($this->Report->save($this->data['Report'])) {
+                // Allagi onomatos eikonas
+                //$this->data['Report']['image'] = oti graftike stin vasi
+                $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
+                //crop an xreiazetai
+                //$this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
+                //$this->set('uploaded',$uploaded);
                 $this->Session->setFlash('The Report has been saved');
-            } else {
+            } 
+            else {
                 $this->Session->setFlash('Report not saved. Try again.');
             }
         }
@@ -37,6 +39,10 @@ class ReportsController extends AppController{
             }
             if(empty($this->data)) {
                 $this->data = $this->Report->findById($id);
+                if(empty($this->data)){
+                    $this->Session->setFlash('Invalid ID');
+                    $this->redirect(array('action'=>'table'), null, true);
+                }
             } 
             else {
                 if ($this->Report->save($this->data)) {
