@@ -310,3 +310,42 @@
 #1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2012-04-16 00:21:51 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-16 00:22:02 Error: [MissingActionException] Action HotSpeciesController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-16 01:03:35 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'del' at line 1
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Datasource\DboSource.php(437): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Datasource\DboSource.php(403): DboSource->_execute('del', Array)
+#2 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Datasource\DboSource.php(647): DboSource->execute('del', Array, Array)
+#3 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Datasource\DboSource.php(589): DboSource->fetchAll('del', Array, Array)
+#4 C:\xampp\htdocs\Elke8eProject\lib\Cake\Model\Model.php(775): DboSource->query('del', Array, Object(HotSpecie))
+#5 [internal function]: Model->__call('del', Array)
+#6 C:\xampp\htdocs\Elke8eProject\app\Controller\HotSpeciesController.php(54): HotSpecie->del('1')
+#7 [internal function]: HotSpeciesController->delete('1')
+#8 C:\xampp\htdocs\Elke8eProject\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(HotSpeciesController), Array)
+#9 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#10 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#11 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2012-04-17 19:23:19 Error: [MissingActionException] Action HotSpeciesController::submit() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(HotSpeciesController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-17 19:33:43 Error: [MissingActionException] Action ReportsController::index() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2012-04-17 19:33:52 Error: [MissingActionException] Action ReportsController::show() could not be found.
+#0 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

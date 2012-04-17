@@ -15,7 +15,17 @@
   <td>
     <?php echo $hotspecie['HotSpecie']['description'] ?>
  </td>
+ <td>
+    <?php echo $this->Html->link('Update', array('action'=>'update',$hotspecie['HotSpecie']['id'])); ?>
+ </td>
+ <td>
+    <?php echo $this->Html->link('Delete', array('action'=>'delete',$hotspecie['HotSpecie']['id'])); ?>
+ </td>
  </tr>
     <?php endforeach; ?>
  </table>
     <?php endif; ?>
+        </br>       
+<?php echo $this->Html->link('Add HotSpecies', array('action'=>'create')); ?>
+<?php echo $this->Session->flash(); ?>
+

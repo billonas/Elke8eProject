@@ -11,12 +11,8 @@ class HotSpeciesController extends AppController{
     var $uses = array('HotSpecie'); 
     //to uses edo xreiazetai epeidi xoris tin xrisi tou uses to cakephp psaxnei to antistoixo model
     //to opoio stin sigekrimeni periptosi den vriskei afou to species den exei eniko(i leksi specie den iparxei)
-    
+        
     function create() {
-        $this->redirect(array('action'=>'submit'), null, true);
-    }
-    
-    function submit() {
         if (!empty($this->data)) {
             $this->HotSpecie->create();
             if ($this->HotSpecie->save($this->data)) {
@@ -29,7 +25,7 @@ class HotSpeciesController extends AppController{
     }
     
     function update($id = null) {
-        if (!$id) {
+        if ($id = null) {
             $this->Session->setFlash('Invalid HotSpecie Id');
             $this->redirect(array('action'=>'show'), null, true);
         }
@@ -51,7 +47,7 @@ class HotSpeciesController extends AppController{
             $this->Session->setFlash('Invalid id for HotSpecie');
             $this->redirect(array('action'=>'show'), null, true);
         }
-        if ($this->HotSpecie->del($id)) {
+        if ($this->HotSpecie->delete($id)) {
             $this->Session->setFlash('HotSpecie #'.$id.' deleted');
             $this->redirect(array('action'=>'show'), null, true);
         }
