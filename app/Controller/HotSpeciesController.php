@@ -12,7 +12,7 @@ class HotSpeciesController extends AppController{
     //to uses edo xreiazetai epeidi xoris tin xrisi tou uses to cakephp psaxnei to antistoixo model
     //to opoio stin sigekrimeni periptosi den vriskei afou to species den exei eniko(i leksi specie den iparxei)
         
-=======
+
     //SXOLIO: From Kiddo, Niko kai gw xrisimopoiw "Report" kai den paizei thema...
     
     
@@ -31,7 +31,7 @@ class HotSpeciesController extends AppController{
     }
     
     function update($id = null) {
-        if ($id = null) {
+        if ($id == null) {
             $this->Session->setFlash('Invalid HotSpecie Id');
             $this->redirect(array('action'=>'show'), null, true);
         }
@@ -49,7 +49,7 @@ class HotSpeciesController extends AppController{
     }
     
     function delete($id = null) {
-        if (!$id) {
+        if ($id != null) {
             $this->Session->setFlash('Invalid id for HotSpecie');
             $this->redirect(array('action'=>'show'), null, true);
         }
