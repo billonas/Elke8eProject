@@ -13,11 +13,7 @@ class UsersController extends AppController{
     function register() {
         //put your code here}
     }
-    
-    function submit() {
-        //put your code here
-    }
-    
+       
     function edit() {
         //put your code here
     }

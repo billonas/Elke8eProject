@@ -11,12 +11,11 @@ class HotSpeciesController extends AppController{
     var $uses = array('HotSpecie'); 
     //to uses edo xreiazetai epeidi xoris tin xrisi tou uses to cakephp psaxnei to antistoixo model
     //to opoio stin sigekrimeni periptosi den vriskei afou to species den exei eniko(i leksi specie den iparxei)
+    //SXOLIO: From Kiddo, Niko kai gw xrisimopoiw "Report" kai den paizei thema...
     
+    
+    //From Kiddo: Den xreiazetai en teli i methodos submit, einai lathos antilipsis pou eixame dimiourgisei :P
     function create() {
-        $this->redirect(array('action'=>'submit'), null, true);
-    }
-    
-    function submit() {
         if (!empty($this->data)) {
             $this->HotSpecie->create();
             if ($this->HotSpecie->save($this->data)) {

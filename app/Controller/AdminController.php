@@ -14,10 +14,6 @@ class AdminController extends AppController{
         //put your code here
     }
     
-    function submitanalyst() {
-        //put your code here
-    }
-    
     function updateanalyst() {
         //put your code here
     }
