@@ -349,3 +349,21 @@
 #1 C:\xampp\htdocs\Elke8eProject\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
 #2 C:\xampp\htdocs\Elke8eProject\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2012-04-18 18:44:39 Error: [MissingConnectionException] Database connection "SQLSTATE[42000] [1049] Unknown database 'database'" is missing, or could not be created.
+#0 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/Datasource/DboSource.php(245): Mysql->connect()
+#1 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/ConnectionManager.php(101): DboSource->__construct(Array)
+#2 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/Model.php(3372): ConnectionManager::getDataSource('default')
+#3 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/Model.php(1083): Model->setDataSource('default')
+#4 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/Model.php(3398): Model->setSource('reports')
+#5 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Model/Model.php(1276): Model->getDataSource()
+#6 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/View/Helper/FormHelper.php(191): Model->schema()
+#7 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/View/Helper/FormHelper.php(444): FormHelper->_introspectModel('Report', 'fields')
+#8 /Applications/MAMP/htdocs/Elke8eProject/app/View/reports/create.ctp(2): FormHelper->create('Report', Array)
+#9 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/View/View.php(908): include('/Applications/M...')
+#10 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/View/View.php(872): View->_evaluate('/Applications/M...', Array)
+#11 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/View/View.php(463): View->_render('/Applications/M...')
+#12 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Controller/Controller.php(959): View->render(NULL, NULL)
+#13 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Routing/Dispatcher.php(110): Controller->render()
+#14 /Applications/MAMP/htdocs/Elke8eProject/lib/Cake/Routing/Dispatcher.php(85): Dispatcher->_invoke(Object(ReportsController), Object(CakeRequest), Object(CakeResponse))
+#15 /Applications/MAMP/htdocs/Elke8eProject/app/webroot/index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}

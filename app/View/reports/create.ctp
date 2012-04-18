@@ -11,7 +11,7 @@
              // τα στοιχεία όπως σώνονται και πρέπει να βρούμε τρόπο για preview...
              echo $this->Form->input('image',array("type" => "file"));
              // Πρέπει να αντιγραφεί αυτόματα το όνομα της εικόνας στο πεδίο main_photo της φόρμας...
-             echo $this->Form->hidden('main_photo');
+             //echo $this->Form->hidden('main_photo');
              
              echo $this->Form->input('date');
              echo $this->Form->input('observation_site',array("label" => "Coordinates"));
@@ -20,8 +20,6 @@
              echo $this->Form->input('re_observation',array("label" => "Have you ever see them again?"));
              
              echo $this->Form->input('email');
-             echo $this->Form->input('name');
-             echo $this->Form->input('surname');
              // κλπ κλπ
           ?>
        </fieldset>
