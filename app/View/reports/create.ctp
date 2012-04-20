@@ -16,10 +16,15 @@
              echo $this->Form->input('date');
              echo $this->Form->input('observation_site',array("label" => "Coordinates"));
              
+             echo $this->Form->input('habitat');
              echo $this->Form->input('depth');
              echo $this->Form->input('re_observation',array("label" => "Have you ever see them again?"));
              
+             //echo $this->Form->input('crowd', array("type" => "select", 'few' => '1-5', 'some' => '6-10','many' => '10-30'));       
+             echo $this->Form->input('comments', array('type' => 'textarea'));
+             
              echo $this->Form->input('email');
+             echo $this->Form->input('age',array("maxLength" => "3"));
              // κλπ κλπ
           ?>
        </fieldset>
