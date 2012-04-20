@@ -1,1 +1,5 @@
 /nbproject/private/
+#ignore all .htaccess file on commit and push 
+.htaccess
+#ignore all tmp files on commit and push
+/app/tmp/*
