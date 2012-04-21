@@ -45,6 +45,10 @@ class AppController extends Controller {
  * @return:
  *		will return an array with the success of each file upload
  */
+    function goHome(){
+		$this->redirect(array('controller'=>'index','action'=>'index'));
+	}
+	
     function uploadFiles($folder, $formdata, $itemId = null) {
 	// setup dir names absolute and relative
 	$folder_url = WWW_ROOT.$folder;

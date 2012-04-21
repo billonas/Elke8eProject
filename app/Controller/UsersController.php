@@ -7,7 +7,9 @@
  */
 class UsersController extends AppController{
     var $name = 'Users';
-    public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form','Session');
+	var $layout = 'template';  
+	
     //put your code here
     
     function register() {
@@ -31,7 +33,8 @@ class UsersController extends AppController{
          //τότε τον κάνει redirect στην αρχική σελίδα
          if( $this->Session->check('User') ) 
          {  
-            $this->redirect(array('action'=>'index','admin'=>true));  
+            //$this->redirect(array('action'=>'index','admin'=>true));  
+			$this->redirect($this->referer());
          }
          if(!empty($this->data))
          {
@@ -54,11 +57,13 @@ class UsersController extends AppController{
                      $this->Session->write('User',$result);  
                      $this->Session->setFlash('You have successfully logged in','flash_good');  
                      $this->redirect(array('controller'=>'users','action'=>'index'));
+					 //$this->redirect($this->referer());
                   
                }
                else 
                {  
                   $this->Session->setFlash('Either your Username of Password is incorrect');  
+				      $this->redirect(array('controller'=>'users','action'=>'login'));			  
                }
             }
          }
