@@ -30,7 +30,7 @@ class User extends AppModel
          $return = false;
          
          $conditions = array(
-             'User.username'=>$data['User']['username'],
+             'User.email'=>$data['User']['username'],
           );
          //βρες αν υπάρχει ο χρήστης με το συγκεκριμένο username
          $user = $this->find('first', array('conditions'=>$conditions));
