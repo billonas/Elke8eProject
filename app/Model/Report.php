@@ -49,11 +49,11 @@ class Report extends AppModel{
                 'rule'  => 'alphaNumeric',
                 'allowEmpty' => true,
                 'message'  => 'Παρακαλώ συμπληρώστε το βάθος σε μέτρα'
-            ),
+            )/*,
             'between' => array(
                 'rule'    => array('between', 0, 4),
                 'message' => 'Παρακαλώ δώστε ένα έγκυρο βάθος (< 9999)'
-            )
+            )*/
         ),
         'name' => array(
                 'rule' => 'alphaNumeric',
