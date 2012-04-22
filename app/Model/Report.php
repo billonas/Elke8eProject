@@ -45,8 +45,8 @@ class Report extends AppModel{
             )
         ),
         'depth' => array(
-            'Numeric' => array(
-                'rule'  => 'numeric',
+            'AlphaNumeric' => array(
+                'rule'  => 'alphaNumeric',
                 'allowEmpty' => true,
                 'message'  => 'Παρακαλώ συμπληρώστε το βάθος σε μέτρα'
             ),
