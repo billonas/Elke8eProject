@@ -18,13 +18,12 @@
 		<div class="middle_row">
         	<div class="middle_wrapper">
                 <div class="login" align="center">  
-                    
+                    				<br><h1>Σύνδεση χρήστη</h1></br>
 									<?php echo $this->Form->create('User', array('action' => 'login'));?>
-
-								   	
-								    <h1>Σύνδεση χρήστη</h1>
-									<?php echo $this->Session->flash(); 
-                                 echo '<p>'.$this->Form->input('User.username', 
+									
+									
+                                    <?php echo '</br>'.$this->Session->flash(); ?> 
+                                    <?php echo '<p>'.$this->Form->input('User.username', 
 									      array('label' => array('class' => 'uname', 'text' => 'To e-mail σας </br>'), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
 										  
 									      echo '</br><p>'.$this->Form->input('User.password', 
@@ -32,7 +31,7 @@
 
 										  echo '<p>'.$this->Form->end(array(
 														'name' => 'data[User][login]',
-														'value' => 'Σύνδεση',
+														'label' => 'Σύνδεση',
 														'div' => false )).'</p>';									  
 								    ?>
                                     <a href="#toregister" class="to_register">Δεν είστε μέλος? Εγγραφείτε! </a>

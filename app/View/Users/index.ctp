@@ -1,6 +1,6 @@
    <?php 
 
-      echo "HELLO"."\n"; 
+      echo "</br>HELLO"."\n"; 
       echo $this->Html->link('Κάντε login', array('action'=>'login'));
   
       echo '</br>';
