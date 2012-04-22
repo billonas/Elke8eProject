@@ -21,7 +21,7 @@ class Report extends AppModel{
                 'className' => 'Category',
                 'foreignKey' => 'category_id'
             ),
-            'Last_edited' => array(
+            'Last_edited_by' => array(
                 'className' => 'User',
                 'foreignKey' => 'last_edited_by'
             )
@@ -45,8 +45,8 @@ class Report extends AppModel{
             )
         ),
         'depth' => array(
-            'Numeric' => array(
-                'rule'  => 'numeric',
+            'AlphaNumeric' => array(
+                'rule'  => 'alphaNumeric',
                 'allowEmpty' => true,
                 'message'  => 'Παρακαλώ συμπληρώστε το βάθος σε μέτρα'
             ),
