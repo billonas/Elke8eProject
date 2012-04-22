@@ -37,7 +37,7 @@ class UsersController extends AppController{
     function login() 
     {    //ελέγχει εάν ο χρήστης είναι ήδη συνδεδεμένος. Εάν έιναι ήδη συνδεδεμένος
          //τότε τον κάνει redirect στην αρχική σελίδα
-         if( $this->Session->check('User') ) 
+         if( $this->Session->check('UserUsername') ) 
          {  
             $this->redirect(array('controller'=>'Index', 'action'=>'index'));  
 
@@ -64,11 +64,21 @@ class UsersController extends AppController{
                      // save to session  
                   echo "user logged in!!!!!";
                   $this->Session->setFlash('You have successfully logged in');  
-                   
-                  $this->Session->write('User',$result['User']['email']);  
+                      
+
+                  $name = $result['User']['name'];
+                  //το πλήρες όνομα του χρήστη υπό την μορφή:V.Kazhs
+                  //(αν name=Vasilhs και Surname=Kazhs)
+                  $arr = str_split($name);
+
+                  $surname = $result['User']['surname'];
+
+                  $fullname = $arr[0] .".". $surname;
+
+                  $this->Session->write('UserUsername',$result['User']['email']);  
                   $this->Session->write('UserType', $result['User']['user_type']);
+                  $this->Session->write('UserFullName',$fullname);  
                   $this->redirect($this->referer());
-                  
                }
                else 
                {  
@@ -90,15 +100,18 @@ class UsersController extends AppController{
 
     function logout() 
     {  
-      if($this->Session->check('User')) 
+      if($this->Session->check('UserUsername')) 
        {  
-           $this->Session->delete('User');  
+           $this->Session->delete('UserUsername');  
+           $this->Session->delete('UserType');  
+           $this->Session->delete('UserFullName');  
            $this->Session->setFlash('You have successfully logged out');  
        }  
        $this->redirect(array('action'=>'login')); 
     }
     
-    function validate($code = null) {
+    function validate($code = null) 
+    {
         //put your code here
     }
 
