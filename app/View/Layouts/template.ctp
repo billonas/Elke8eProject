@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-        
+        	<div class="show_display"></div>
 			<div class="upper_row">
 				<?php echo
 					$this->Html->Link( 
@@ -21,26 +21,43 @@
 						array('escape' => false));
 			    ?>
 				<ul class="upper_list" >
-					<li class="active"><a href="#">Σύνδεση<span class="pointer"></span></a>
+					<li class="active">
+					      <?php 
+						      if($this->Session->check('UserUsername'))
+								  echo '<a href="#">'.$this->Session->read('UserFullName').'<span class="pointer"></span></a>';
+							  else 
+							      echo'<a href="#">Σύνδεση<span class="pointer"></span></a>';	
+                          ?>
 						<!--oti vriskete apo edo kai kato kai mexri ta epomena sxolia einai o kodikas toy pop up-->
 						<!--xreiazontai kai ta dio div alla ta endiamesa mporoun na figoun kai na allaksoun-->
 							<div class="upper_pop">
 								<div class="login">
-									<?php echo $this->Form->create('User', array('action' => 'login'));?>
-									
-								    <h1>Σύνδεση χρήστη</h1>
-									<?php echo '<p>'.$this->Form->input('User.username', 
-									      array('label' => array('class' => 'uname', 'text' => 'To e-mail σας </br>', 'data-icon' => 'u'), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 															  												'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
-										  
-									      echo '</br><p>'.$this->Form->input('User.password', 
-									      array('label' => array('class' => 'youpasswd', 'text' => 'O κωδικός σας  </br>', 'data-icon' => 'p'), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    'id'=> 'UserPassword', 'placeholder' => 'π.χ. X8df!90EO')).'</p></br>';	
-
-										  echo '<p>'.$this->Form->end(array(
+                                	<?php 
+										if($this->Session->check('UserUsername')) {
+											echo '<h1>Καλώς ήλθατε</h1>';
+											echo $this->Html->link('Logout', array('controller' => 'users', 'action'=>'logout'));
+                           
+									    }
+										else{
+											
+											echo $this->Form->create('User', array('action' => 'login'));
+											echo '<h1>Σύνδεση χρήστη</h1>';
+											echo '<p>'.$this->Form->input('User.username', 
+												  array('label' => array('class' => 'uname', 'text' => 'To e-mail σας </br>', 'data-icon' => 'u'), 'div' => false, 'type' => 'text',
+														'required' => 'required', 'id'=> 'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
+												  
+											echo '</br><p>'.$this->Form->input('User.password', 
+												  array('label' => array('class' => 'youpasswd', 'text' => 'O κωδικός σας  </br>', 'data-icon' => 'p'), 'div' => false, 'type' => 'password', 
+														'required' => 'required', 'id'=> 'UserPassword', 'placeholder' => 'π.χ. X8df!90EO')).'</p></br>';	
+		
+											echo '<p>'.$this->Form->end(array(
 														'name' => 'data[User][login]',
 														'label' => 'Σύνδεση',
-														'div' => false )).'</p>';									  
+														'div' => false )).'</p>';	
+										    echo '<a href="#toregister" class="to_register">Δεν είστε μέλος? Εγγραφείτε! </a>';
+										}
 								    ?>
-                                    <a href="#toregister" class="to_register">Δεν είστε μέλος? Εγγραφείτε! </a>
+                                    
 									
 								</div>
 							</div>
@@ -64,6 +81,8 @@
 				</ul>
 			</div>
 		</div>
+        
 		<?php echo $content_for_layout ?>
+        
 	</body>
 </html>
