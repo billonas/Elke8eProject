@@ -39,7 +39,7 @@ class UsersController extends AppController{
          //τότε τον κάνει redirect στην αρχική σελίδα
          if( $this->Session->check('User') ) 
          {  
-            $this->redirect(array('action'=>'index'));  
+            $this->redirect(array('controller'=>'Index', 'action'=>'index'));  
 
          }
          if(!empty($this->data))
@@ -67,7 +67,7 @@ class UsersController extends AppController{
                    
                   $this->Session->write('User',$result['User']['email']);  
                   $this->Session->write('UserType', $result['User']['user_type']);
-                  $this->redirect(array('controller'=>'users','action'=>'index'));
+                  $this->redirect($this->referer());
                   
                }
                else 
@@ -93,7 +93,7 @@ class UsersController extends AppController{
       if($this->Session->check('User')) 
        {  
            $this->Session->delete('User');  
-           $this->Session->setFlash('You have successfully logged out','flash_good');  
+           $this->Session->setFlash('You have successfully logged out');  
        }  
        $this->redirect(array('action'=>'login')); 
     }
