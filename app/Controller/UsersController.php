@@ -8,7 +8,6 @@
 class UsersController extends AppController{
     var $name = 'Users';
     public $helpers = array('Html', 'Form','Session');
-	 var $layout = 'template';  
 	
     //put your code here
 

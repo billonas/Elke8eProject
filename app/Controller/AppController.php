@@ -45,10 +45,8 @@ class AppController extends Controller {
  * @return:
  *		will return an array with the success of each file upload
  */
-   function goHome()
-	{
-		$this->redirect(array('controller'=>'index','action'=>'index'));
-	}
+   var $layout='template';
+   
 
    function beforeFilter() 
    {
