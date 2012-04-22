@@ -37,7 +37,7 @@ class PagesController extends AppController {
  * @var string
  */
 	public $name = 'Pages';
-
+	var $layout = 'default';
 /**
  * Default helper
  *
