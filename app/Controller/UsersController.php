@@ -47,7 +47,6 @@ class UsersController extends AppController{
             //θέσε στο μοντέλο User τα δεδομένα της φόρμας για να τα κάνει validate
             $this->User->set($this->data);
 
-            echo "debag:ta data paradidontai kanonika";
 
             //έλενξε εάν τα δεδομένα που δίνει ο χρήστης είναι έγκυρα. Αυτό καθορίζεται
             //με βάση τους κανόνες που έχουν εισαχθεί στο αντίστοιχο μοντέλο(User)
@@ -62,7 +61,6 @@ class UsersController extends AppController{
                      //$this->User->saveField('last_login',date("Y-m-d H:i:s"));  
                      
                      // save to session  
-                  echo "user logged in!!!!!";
                   $this->Session->setFlash('You have successfully logged in');  
                       
 
@@ -78,7 +76,10 @@ class UsersController extends AppController{
                   $this->Session->write('UserUsername',$result['User']['email']);  
                   $this->Session->write('UserType', $result['User']['user_type']);
                   $this->Session->write('UserFullName',$fullname);  
-                  $this->redirect($this->referer());
+//                  $this->redirect($this->referer());
+                  $url = $this->referer();
+//                  $this->Session->setFlash("testring second message");
+                  $this->flash('Ανακατευθυνθείται στην πρηγούμενη σελίδα', $url, 5, 'login_success');
                }
                else 
                {  
@@ -88,7 +89,6 @@ class UsersController extends AppController{
             }
          }
 
-         
          
       
     }
@@ -107,7 +107,7 @@ class UsersController extends AppController{
            $this->Session->delete('UserFullName');  
            $this->Session->setFlash('You have successfully logged out');  
        }  
-       $this->redirect(array('action'=>'login')); 
+       $this->redirect($this->referer()); 
     }
     
     function validate($code = null) 
