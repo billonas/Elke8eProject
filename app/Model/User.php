@@ -8,8 +8,14 @@
 class User extends AppModel
 {
       var $name= 'User';
+      public $recursive = 2;
+      public $hasOne = array(
+          'Analyst' => array(
+             'className' => 'Analyst',
+             'foreignKey' => 'id'
+          )
+      ); 
       
-
       public $validate = array(  
       'username'=>array(  
             'rule'=>'notEmpty',
