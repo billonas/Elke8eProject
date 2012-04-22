@@ -55,16 +55,6 @@ class Report extends AppModel{
                 'message' => 'Παρακαλώ δώστε ένα έγκυρο βάθος (< 9999)'
             )*/
         ),
-        'name' => array(
-                'rule' => 'alphaNumeric',
-                'allowEmpty' => true,
-                'message'  => 'Παρακαλώ συμπληρώστε το ονομά σας'
-        ),
-        'surname' => array(
-                'rule' => 'alphaNumeric',
-                'allowEmpty' => true,
-                'message'  => 'Παρακαλώ συμπληρώστε το επωνυμό σας'
-        ),
         'date' => array(
             'rule'       => 'date',
             'message'    => 'Παρακαλώ συμπληρώστε μια κανονική ημερομηνία(Π.Χ. 12/03/2012)',

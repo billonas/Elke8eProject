@@ -51,9 +51,9 @@
 						
 						
 					</li>
-					<li><a href="#">Link1</a></li>
-					<li><a href="#">Link2</a></li>
-					<li><a href="#">Link3</a></li>
+					<li><a href="#">Επικοινωνία</a></li>
+					<li><a href="#">Οι Σκοπόι μας</a></li>
+					<li><a href="#">Αρχική</a></li>
                     
 					    
 						
