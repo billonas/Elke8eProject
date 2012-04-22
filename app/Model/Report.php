@@ -21,7 +21,7 @@ class Report extends AppModel{
                 'className' => 'Category',
                 'foreignKey' => 'category_id'
             ),
-            'Last_edited' => array(
+            'Last_edited_by' => array(
                 'className' => 'User',
                 'foreignKey' => 'last_edited_by'
             )
