@@ -7,6 +7,7 @@
  */
 class Report extends AppModel{
     var $name= 'Report';
+    public $recursive = 3;
     public $belongsTo = array(
           'HotSpecie' => array(
              'className' => 'HotSpecie',
