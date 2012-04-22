@@ -79,11 +79,11 @@ class UsersController extends AppController{
 //                  $this->redirect($this->referer());
                   $url = $this->referer();
 //                  $this->Session->setFlash("testring second message");
-                  $this->flash('Ανακατευθυνθείται στην πρηγούμενη σελίδα', $url, 5, 'login_success');
+                  $this->flash('Πατήστε εδώ αν ο browser δεν σας ανακατευθύνει αυτόματα', $url, 4, 'login_success');
                }
                else 
                {  
-                  $this->Session->setFlash('Either your Username or Password is incorrect');  
+                  $this->Session->setFlash('Το mail ή ο κωδικός χρήστη που εισάγατε ήταν λάθος!','flash_bad');  
 				      $this->redirect(array('controller'=>'users','action'=>'login'));			  
                }
             }

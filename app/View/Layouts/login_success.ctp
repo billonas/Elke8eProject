@@ -9,12 +9,17 @@
 <meta http-equiv="Refresh" content="<?php echo $pause; ?>;url=<?php echo $url; ?>"/>
 <?php } ?>
 <style><!--
-P { text-align:center; font:bold 1.1em sans-serif }
-A { color:#444; text-decoration:none }
+P { text-align:center; font:bold 1.1em sans-serif ;}
+A { color:#444; text-decoration:underline}
 A:HOVER { text-decoration: underline; color:#44E }
 --></style>
 </head>
-<body>
-<p><a href="<?php echo $url; ?>"><?php echo $message; ?></a></p>
+<body><div id="center" style="position: fixed;
+  top: 25%;
+  left: 50%;
+  margin-top:  0px;
+  margin-left: -250px;">
+<p>Καλώς ήλθατε!</br>
+<a href="<?php echo $url; ?>" style="color:#44E"><?php echo $message; ?></a></p></div>
 </body>
 </html>

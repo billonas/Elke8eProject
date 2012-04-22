@@ -5,12 +5,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>ΕΛΚΕΘΕ - Κεντρική σελίδα</title>
 		<?php 	echo $this->Html->css(array('main')); 	?>
-        <?php 	echo $this->Html->script(array('jquery.min','jquery-ui.min')); 	?>
+        <?php 	echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery-1.7.2.min','fade')); 	?>
+        
+		
+		<?php // echo $this->Html->scriptStart(array('inline' => false));?>
         <script>
-  $(document).ready(function() {
-    $("#tabs").tabs();
-  });
-  </script>
+			$ (document).ready(function($){
+	 
+			if($('#slideshow').length != 0){
+			$('#slideshow').crossSlide({
+					sleep: 3,
+					fade: 1
+			}, [ 
+			{ src:  <?php echo "'".$this->Html->Image("wall_01.jpg")."'";?> },
+			{ src:  <?php echo "'".$this->Html->Image("wall_02.jpg")."'";?> },
+			{ src:  <?php echo "'".$this->Html->Image("wall_03.jpg")."'";?> }
+				]);}
+			});
+		</script>
+		<?php //echo $this->Html->scriptEnd();?>
 		<!--[if lt IE 10 ]>
 			<link rel="stylesheet" href="hacks.css" type="text/css" media="screen" />
 		 <![endif]-->
