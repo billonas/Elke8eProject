@@ -19,25 +19,23 @@
         	<div class="middle_wrapper">
                 <div class="login" align="center">  
                     
-									<?php echo $this->Form->create('User');?>
-										<h1>Σύνδεση χρήστη</h1>
-										</br>
-										<p>
-											<label for="username" class="uname" > Το e-mail σας <br /> </label>
-											<input id="username" name="data[User][username]" required="required" type="text" placeholder="π.χ. mymail@mail.com"/>
-										</p>
-										<br />
-										<p>
-											<label for="password" class="youpasswd" > Ο κωδικός πρόσβασής σας <br /> </label>
-											<input id="password" name="data[User][password]" required="required" type="password" placeholder="π.χ. X8df!90EO" />
-										</p>
-										<br />
-										<p class="login button">
-											<input type="submit" name="data[User][login]" value="Σύνδεση" />
-										</p>
-                                        </br>
-										<a href="#toregister" class="to_register">Δεν είστε μέλος ακόμα? Κάνετε εγγραφή!</a>
-									</form>
+									<?php echo $this->Form->create('User', array('action' => 'login'));?>
+
+								   	
+								    <h1>Σύνδεση χρήστη</h1>
+									<?php echo $this->Session->flash(); 
+                                 echo '<p>'.$this->Form->input('User.username', 
+									      array('label' => array('class' => 'uname', 'text' => 'To e-mail σας </br>'), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
+										  
+									      echo '</br><p>'.$this->Form->input('User.password', 
+									      array('label' => array('class' => 'youpasswd', 'text' => 'O κωδικός σας </br>'), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    'id'=> 'UserPassword', 'placeholder' => 'π.χ. X8df!90EO')).'</p></br>';	
+
+										  echo '<p>'.$this->Form->end(array(
+														'name' => 'data[User][login]',
+														'value' => 'Σύνδεση',
+														'div' => false )).'</p>';									  
+								    ?>
+                                    <a href="#toregister" class="to_register">Δεν είστε μέλος? Εγγραφείτε! </a>
 								
                 </div> 
                 

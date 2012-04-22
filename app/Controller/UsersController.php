@@ -8,9 +8,16 @@
 class UsersController extends AppController{
     var $name = 'Users';
     public $helpers = array('Html', 'Form','Session');
-	var $layout = 'template';  
+	 var $layout = 'template';  
 	
     //put your code here
+
+   //H μέθοδος beforeFilter() εκτελείται πριν από κάθε κλήση ενός action του 
+   //συγκεκριμένου controller.
+   function beforeFilter() 
+   {
+      parent::beforeFilter();
+   }
     
     function register() {
         //put your code here}
@@ -33,13 +40,15 @@ class UsersController extends AppController{
          //τότε τον κάνει redirect στην αρχική σελίδα
          if( $this->Session->check('User') ) 
          {  
-            //$this->redirect(array('action'=>'index','admin'=>true));  
-			$this->redirect($this->referer());
+            $this->redirect(array('action'=>'index'));  
+
          }
          if(!empty($this->data))
          {
             //θέσε στο μοντέλο User τα δεδομένα της φόρμας για να τα κάνει validate
             $this->User->set($this->data);
+
+            echo "debag:ta data paradidontai kanonika";
 
             //έλενξε εάν τα δεδομένα που δίνει ο χρήστης είναι έγκυρα. Αυτό καθορίζεται
             //με βάση τους κανόνες που έχουν εισαχθεί στο αντίστοιχο μοντέλο(User)
@@ -50,19 +59,21 @@ class UsersController extends AppController{
                if($result !== FALSE)
                {
                      // update login time  
-//                     $this->User->id = $result['User']['id'];  
-//                     $this->User->saveField('last_login',date("Y-m-d H:i:s"));  
+                     //$this->User->id = $result['User']['id'];  
+                     //$this->User->saveField('last_login',date("Y-m-d H:i:s"));  
+                     
                      // save to session  
-
-                     $this->Session->write('User',$result);  
-                     $this->Session->setFlash('You have successfully logged in','flash_good');  
-                     $this->redirect(array('controller'=>'users','action'=>'index'));
-					 //$this->redirect($this->referer());
+                  echo "user logged in!!!!!";
+                  $this->Session->setFlash('You have successfully logged in', 'flash_good');  
+                   
+                  $this->Session->write('User',$result['User']['email']);  
+                  $this->Session->write('UserType', $result['User']['user_type']);
+                  $this->redirect(array('controller'=>'users','action'=>'index'));
                   
                }
                else 
                {  
-                  $this->Session->setFlash('Either your Username of Password is incorrect');  
+                  $this->Session->setFlash('Either your Username or Password is incorrect', 'flash_bad');  
 				      $this->redirect(array('controller'=>'users','action'=>'login'));			  
                }
             }

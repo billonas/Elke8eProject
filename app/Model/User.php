@@ -15,7 +15,7 @@ class User extends AppModel
             'rule'=>'notEmpty',
             'required'=>true,
             'allowEmpty'=>false,  
-            'message'=>'Παρακαλούμε πληκτρολογήστε το κωδικό όνομα'  
+            'message'=>'Παρακαλούμε πληκτρολογήστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου'  
       ),  
       'password'=>array(  
             'rule'=>'notEmpty',  

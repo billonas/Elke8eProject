@@ -1,17 +1,25 @@
-<?php
+   <?php 
 
-   echo "HELLO"."\n"; 
-   ?>
-
-  <?php echo $this->Html->link('Κάντε login', array('action'=>'login'));
+      echo "HELLO"."\n"; 
+      echo $this->Html->link('Κάντε login', array('action'=>'login'));
   
-  echo '</br>';
-  echo $this->Session->valid();
-  echo '</br>';
-  if($this->Session->check('User.password') == true) 
-  	echo 'password sessioned';
-  else 
-  	echo 'nope';
-  //echo $this->Html->link($this->Session->read('User.email'), array('action'=>'/project/users/logout'));
+      echo '</br>';
+      echo $this->Session->valid();
+      echo '</br>';
+
+      if($this->Session->check('User')) 
+      {
+         echo $this->Session->flash(); 
+
+         echo "Username:" .$this->Session->read('User');
+         echo '</br>';
+         echo "UserType:" .$this->Session->read('UserType');
+         echo '</br>';
+
+         echo $this->Html->link('Logout', 
+                           array('action'=>'logout'));
+      }
+      else 
+      	echo 'nope';
     
 ?> 

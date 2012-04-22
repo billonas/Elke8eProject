@@ -45,9 +45,30 @@ class AppController extends Controller {
  * @return:
  *		will return an array with the success of each file upload
  */
-    function goHome(){
+   function goHome()
+	{
 		$this->redirect(array('controller'=>'index','action'=>'index'));
 	}
+
+   function beforeFilter() 
+   {
+        // if admin url requested  
+        if(isset($this->params['admin']) && $this->params['admin']) {  
+            // check user is logged in  
+            if( !$this->Session->check('User') ) {  
+                $this->Session->setFlash('You must be logged in for that action.','flash_bad');  
+                $this->redirect('/login');  
+            }  
+  
+            // save user data  
+            $this->_User = $this->Session->read('User');  
+            $this->set('user',$this->_User);  
+  
+            // change layout  
+            $this->layout = 'admin';  
+        }
+
+    }
 	
     function uploadFiles($folder, $formdata, $itemId = null) {
 	// setup dir names absolute and relative
