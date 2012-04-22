@@ -63,7 +63,7 @@ class UsersController extends AppController{
                      
                      // save to session  
                   echo "user logged in!!!!!";
-                  $this->Session->setFlash('You have successfully logged in', 'flash_good');  
+                  $this->Session->setFlash('You have successfully logged in');  
                    
                   $this->Session->write('User',$result['User']['email']);  
                   $this->Session->write('UserType', $result['User']['user_type']);
@@ -72,7 +72,7 @@ class UsersController extends AppController{
                }
                else 
                {  
-                  $this->Session->setFlash('Either your Username or Password is incorrect', 'flash_bad');  
+                  $this->Session->setFlash('Either your Username or Password is incorrect');  
 				      $this->redirect(array('controller'=>'users','action'=>'login'));			  
                }
             }
