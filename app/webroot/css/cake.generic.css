@@ -338,11 +338,10 @@ div.checkbox label {
 	display: inline;
 }
 input[type=radio] {
-	float:left;
-	width:auto;
-	margin: 6px 0;
-	padding: 0;
-	line-height: 26px;
+    float:left;
+margin:0px;
+width:20px;
+	
 }
 .radio label {
 	margin: 0 0 6px 20px;

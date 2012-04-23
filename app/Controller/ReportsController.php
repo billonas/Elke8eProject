@@ -7,7 +7,7 @@
  */
 class ReportsController extends AppController{
     var $name = 'Reports';
-    public $helpers = array('Html', 'Form', 'Cropimage', 'Js');
+    public $helpers = array('Html', 'Form', 'Cropimage', 'Js','Session');
     public $components = array('JqImgcrop');
 
 
@@ -22,8 +22,9 @@ class ReportsController extends AppController{
                 $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
                 //crop an xreiazetai
                 //$this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
-                //$this->set('uploaded',$uploaded);
+                //$this->set('uploaded',$uploaded)
                 $this->Session->setFlash('The Report has been saved');
+                $this->redirect(array('controller' => 'reports','action'=>'create'), null, true);
             } 
             else {
                 $this->Session->setFlash('Report not saved. Try again.');
