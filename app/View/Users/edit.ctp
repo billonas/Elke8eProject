@@ -31,11 +31,12 @@
 									      array('label' => array('class' => 'country', 'text' => 'Χώρα:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserCountry')).'</p>';
 					echo '</br><p>'.$this->Form->input('Up.age', 
 									      array('label' => array('class' => 'age', 'text' => 'Ηλικία:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserAge')).'</p>';	
+					$options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια');  
 					echo '</br><p>'.$this->Form->input('Up.education', 
-									      array('label' => array('class' => 'education', 'text' => 'Εκπαίδευση:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserEducation')).'</p>';										  									  									  
-										  
+									      array('options' => $options, 'default' => '  -  ', 'label' => array('class' => 'education', 'text' => 'Εκπαίδευση:  '), 'div' => false, 'required' => 'required', 'id'=> 												 												'UserEducation')).'</p>';										  									  									  
+					$options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο'); 					  
 					echo '</br><p>'.$this->Form->input('Up.membership', 
-									      array('label' => array('class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserMembership')).'</p>';										  	
+									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'required' => 'required', 'id'=> 												 												'UserMembership')).'</p>';										  	
 
 										  echo '</br><p>'.$this->Form->end(array(
 														'name' => 'data[Up][edit]',
