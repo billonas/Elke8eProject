@@ -40,7 +40,7 @@
 										if($this->Session->check('UserUsername')) {
 											echo '<h1>Καλώς ήλθατε</h1>';
 											
-											echo $this->Html->link('Προβολή προσωπικού προφίλ', array('controller' => 'users', 'action'=>'profile'));
+											echo $this->Html->link('Προβολή προσωπικού προφίλ', array('controller' => 'users', 'action'=>'edit'));
 											echo '</br></br>';
 											echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
                            
