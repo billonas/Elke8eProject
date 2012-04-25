@@ -7,7 +7,57 @@
 		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default'));	
                 ?>
                 <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script >
+var geocoder = new google.maps.Geocoder();
 
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+  document.getElementById('info').innerHTML = [
+    latLng.lat(),
+    latLng.lng()
+  ].join(', ');
+}
+
+
+function initialize() {
+  var latLng = new google.maps.LatLng(38.0397, 24.644);
+  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom: 6,
+    center: latLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Point A',
+    map: map,
+    draggable: true
+  });
+  
+  // Update current position info.
+  updateMarkerPosition(latLng);
+  
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+  });
+  
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Dragging...');
+    updateMarkerPosition(marker.getPosition());
+  });
+  
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Drag ended');
+  });
+}
+
+// Onload handler to fire off the app.
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 <script>
   $(document).ready(function() {
     $("#tabs").tabs();
@@ -22,14 +72,32 @@
 		 <![endif]-->
 	</head>
 	<body>
-    	
+                <style>
+                .ui-tabs .ui-tabs-hide {
+                    position: absolute;
+                    left: -10000px;
+                }          
+
+                #mapCanvas {
+                    width: 500px;
+                    height: 400px;
+                    float: left;
+                }
+                #infoPanel {
+                    float: left;
+                    margin-left: 10px;
+                }
+                #infoPanel div {
+                    margin-bottom: 5px;
+                }
+                </style>
 		<div class="middle_row">
         	<div class="middle_wrapper">
                 <?php echo $this->Session->flash();?>    
                 <div id="tabs">
                     <ul>
                         <li><a href="#fragment-1">1. Φωτογραφία<br/> παρατήρησης</a></li>
-<?php  if(isset($cropped)){ 
+                        <?php  if(isset($cropped)){ 
                   echo '<li><a href="#fragment-2"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-3"><span>3. Επιπλέον Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-4"><span>4. Στοιχεία <br/>Παρατηρητή</span></a></li>  
@@ -46,7 +114,7 @@
                                     if(!isset($uploaded)){
                                         echo $this->Form->create('Report', array('action' => 'create', "enctype" => "multipart/form-data"));
                                         echo $this->Form->input('image',array("type" => "file"));  
-                                        echo $this->Form->input('edit',array("label"=>"Θέλετε να επεξεργαστείται την φωτογραφία;",'type'=>'checkbox'));
+                                        echo $this->Form->input('edit',array("label"=>"Θέλετε να επεξεργαστείτε την φωτογραφία;",'type'=>'checkbox'));
                                         echo $this->Form->end('Ανέβασμα Φωτογραφίας'); 
                                     }
                                     else{
@@ -73,19 +141,21 @@
                            <?php  
                            if(isset($cropped)){ 
                                 echo $this->Form->input('date',array('type'=>'text','id'=>'date','label'=>'Ημερομηνία Παρατήρησης'));
-                                //echo $this->Form->input('date',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Παρατήρησης','placeholder'=>'(mm/dd/yy)'));
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo $this->Form->input('observation_site',array("label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<br/>';
+//                                echo '<div id="mapCanvas"></div>';
+//                                echo '<div id="markerStatus"><i>Click and drag the marker.</i></div>';
+//                                echo '<br/>';
+                                echo $this->Form->input('observation_site',array('type'=>'text','id'=>'info',"label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
                                 echo '<br/>';
                                 echo '<br/>';
                                 //echo $this->Form->end('Κατάθεση αναφοράς'); 
@@ -98,7 +168,7 @@
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');
                                 $options['3']  = $this->Html->image('hotspecies/3.jpg');
-                                echo $this->Form->input('hotspecies', array('options' => $options,'type'=>'radio','legend'=> false,'before' => 'Είναι κάποιο απ\'τα συγκεκριμένα Hot Species;<br/><br/>'));
+                                echo $this->Form->input('hot_id', array('options' => $options,'type'=>'radio','legend'=> false,'before' => 'Είναι κάποιο απ\'τα συγκεκριμένα Hot Species;<br/><br/>'));
                                 echo '<br/>';
                                 echo $this->Form->input('habitat',array("label"=>"Βιοτοπος-Περιβάλλον Παρατήρησης",'placeholder' => 'Περιγράψτε. Π.Χ. «Βράχια καλυμμένα με βλάστηση»'));
                                 echo '<br/>';
@@ -119,7 +189,7 @@
                             <?php  
                             if(isset($cropped)){ 
                                 echo '<br/>';
-                                echo $this->Form->input('age',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Γέννησης','placeholder'=>'(mm/dd/yy)'));
+                                echo $this->Form->input('age',array('label'=>'Ημερομηνία Γέννησης'));
                                 echo '<br/>';
                                 $options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια - Ανώτατη');  
                                 echo $this->Form->input('education', array('options' => $options, 'default' => '    -    ','label'=>'Επίπεδο Εκπαίδευσης'));

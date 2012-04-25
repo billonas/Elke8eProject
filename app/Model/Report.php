@@ -7,25 +7,25 @@
  */
 class Report extends AppModel{
     var $name= 'Report';
-//    public $recursive = 3;
-//    public $belongsTo = array(
-//          'HotSpecie' => array(
-//             'className' => 'HotSpecie',
-//             'foreignKey' => 'hot_id'
-//           ),
-//           'User' => array(
-//              'className' => 'User',
-//              'foreignKey' => 'observer'
-//            ),
-//            'Category' => array(
-//                'className' => 'Category',
-//                'foreignKey' => 'category_id'
-//            ),
-//            'Last_edited_by' => array(
-//                'className' => 'User',
-//                'foreignKey' => 'last_edited_by'
-//            )
-//     );
+    public $recursive = 3;
+    public $belongsTo = array(
+          'HotSpecie' => array(
+             'className' => 'HotSpecie',
+             'foreignKey' => 'hot_id'
+           ),
+           'User' => array(
+              'className' => 'User',
+              'foreignKey' => 'observer'
+            ),
+            'Category' => array(
+                'className' => 'Category',
+                'foreignKey' => 'category_id'
+            ),
+            'Last_edited_by' => array(
+                'className' => 'User',
+                'foreignKey' => 'last_edited_by'
+            )
+     );
     
 //    public $validate = array(
 //        'habitat' => array(

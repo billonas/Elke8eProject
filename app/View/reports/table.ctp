@@ -45,10 +45,23 @@
                                     </center>
                                 </td>
                                 <td>
-                                    <?php echo $report['Category']['category_name'] ?>
+                                    <?php 
+                                        if(isset($report['Category']['category_name'])){
+                                            echo $report['Category']['category_name']; 
+                                        }
+                                        else{
+                                            echo '-';
+                                        }
+                                        ?>
                                 </td>
                                 <td>
-                                    <?php echo $report['HotSpecie']['scientific_name'] ?>
+                                    <?php 
+                                        if(isset($report['HotSpecie']['scientific_name'])){
+                                            echo $report['HotSpecie']['scientific_name']; 
+                                        }else{
+                                            echo '-';
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
