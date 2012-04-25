@@ -4,15 +4,15 @@
 		<meta http-equiv="content-language" content="en-gb" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>Αναφορά Παρατήρησης</title>
-		<?php echo $this->Html->css(array('main','jquery-ui'));	
+		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default'));	
                 ?>
-                <?php echo $this->Html->script(array('jquery.min','jquery-ui.min'));?>
+                <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
 
 <script>
   $(document).ready(function() {
     $("#tabs").tabs();
-    $( ".selector" ).datepicker( "option", "dateFormat", 'yyyy-mm-dd' );
-    $("#datepicker").datepicker();
+    $( ".selector" ).datepicker({ altFormat: "yy-mm-dd" });
+    $("#date").datepicker();
   });
 </script>
 
@@ -29,35 +29,51 @@
                 <div id="tabs">
                     <ul>
                         <li><a href="#fragment-1">1. Φωτογραφία<br/> παρατήρησης</a></li>
-                        <li><a href="#fragment-2"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
+<?php  if(isset($cropped)){ 
+                  echo '<li><a href="#fragment-2"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-3"><span>3. Επιπλέον Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-4"><span>4. Στοιχεία <br/>Παρατηρητή</span></a></li>  
-                        <li><a href="#fragment-5"><span>5. Στοιχεία <br/>Επικοινωνίας</span></a></li>  
+                        <li><a href="#fragment-5"><span>5. Στοιχεία <br/>Επικοινωνίας</span></a></li> ';
+    
+                        } ?>
                 
                     </ul>
                         <div id="fragment-1">
                             <?php 
-                                echo '<br/>';
-                                echo $this->Form->create('Report', array('action' => 'create', "enctype" => "multipart/form-data"));
-                                // ΣΧΕΤΙΚΑ ΜΕ ΤΟ ΕΡΓΑΛΕΙΟ UPLOAD-CROP
-                                // http://bakery.cakephp.org/articles/klagoggle_myopenid_com/2010/08/25/jquery-image-upload-crop
-                                echo $this->Form->input('image',array("type" => "file",'label'=> 'Φωτογραφία'));
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo $this->Form->input('use',array("label"=>"Mπορούν να χρησιμοποιηθούν οι φωτογραφίες σας;",'type'=>'checkbox'));
-                                echo '<br/>';
                                 
+                                echo '<br/>';
+                                if(!isset($cropped)){
+                                    if(!isset($uploaded)){
+                                        echo $this->Form->create('Report', array('action' => 'create', "enctype" => "multipart/form-data"));
+                                        echo $this->Form->input('image',array("type" => "file"));  
+                                        echo $this->Form->input('edit',array("label"=>"Θέλετε να επεξεργαστείται την φωτογραφία;",'type'=>'checkbox'));
+                                        echo $this->Form->end('Ανέβασμα Φωτογραφίας'); 
+                                    }
+                                    else{
+                                        echo $this->Form->create('Report', array('action' => 'create',"enctype" => "multipart/form-data"));     
+                                        echo $this->Cropimage->createJavaScript($uploaded['imageWidth'],$uploaded['imageHeight'],151,151);  
+                                        echo $this->Cropimage->createForm($uploaded["imagePath"], 151, 151); 
+                                        echo $this->Form->submit('Επεξεργασία Φωτογραφίας', array("id"=>"save_thumb"));
+                                        echo $this->Form->end();
+                                    } 
+                                }
+                                else{
+                                    echo $this->Form->create('Report', array('action' => 'create',"enctype" => "multipart/form-data"));     
+                                    echo $this->Html->image($imagePath); 
+                                    echo $this->Form->input('main_photo',array('type'=>'hidden','value'=>$imagePath));
+                                    echo '<br/>';
+                                    echo $this->Form->input('permissionUseMedia',array("label"=>"Mπορούν να χρησιμοποιηθούν οι φωτογραφίες σας;"));
+                                    echo '<br/>';
+                                }
                             ?>
                         </div>
                         <div id="fragment-2">
                            
                             <br/>
                            <?php  
-                                echo $this->Form->input('date',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Παρατήρησης','placeholder'=>'(mm/dd/yy)'));
+                           if(isset($cropped)){ 
+                                echo $this->Form->input('date',array('type'=>'text','id'=>'date','label'=>'Ημερομηνία Παρατήρησης'));
+                                //echo $this->Form->input('date',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Παρατήρησης','placeholder'=>'(mm/dd/yy)'));
                                 echo '<br/>';
                                 echo '<br/>';
                                 echo '<br/>';
@@ -73,10 +89,11 @@
                                 echo '<br/>';
                                 echo '<br/>';
                                 //echo $this->Form->end('Κατάθεση αναφοράς'); 
-                           ?>
+                           }?>
                         </div>
                         <div id="fragment-3">
                             <?php
+                            if(isset($cropped)){ 
                                 $options = array();
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');
@@ -96,37 +113,39 @@
                                 echo '<br/>';
                                 echo '<br/>';
                                 //echo $this->Form->end('Κατάθεση αναφοράς'); 
-                                ?>
+                            }?>
                         </div>  
                         <div id="fragment-4">
                             <?php  
+                            if(isset($cropped)){ 
                                 echo '<br/>';
-                                echo $this->Form->input('age',array("label" => "Ημερομηνία Γέννησης"));
+                                echo $this->Form->input('age',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Γέννησης','placeholder'=>'(mm/dd/yy)'));
                                 echo '<br/>';
                                 $options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια - Ανώτατη');  
                                 echo $this->Form->input('education', array('options' => $options, 'default' => '    -    ','label'=>'Επίπεδο Εκπαίδευσης'));
                                 echo '<br/>';
                                 $options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο');  
-                                echo $this->Form->input('education', array('options' => $options, 'default' => '   -   ','label'=>'Ιδιότητα'));
+                                echo $this->Form->input('occupation', array('options' => $options, 'default' => '   -   ','label'=>'Ιδιότητα'));
                                 echo '<br/>';
                                 echo '<br/>';
                                 //echo $this->Form->end('Κατάθεση αναφοράς'); 
-                           ?>
+                            }?>
                         </div>
                         <div id="fragment-5">
-                            <?php  
+                            <?php 
+                            if(isset($cropped)){ 
                                 echo '<br/>';
                                 echo $this->Form->input('name',array("label" => "Όνομα",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));
                                 echo '<br/>';
                                 echo $this->Form->input('surname',array("label" => "Επώνυμο",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));
                                 echo '<br/>';
-                                echo $this->Form->input('phone',array("label" => "Τηλέφωνο Επικοινωνίας",'placeholder' => 'Σταθερό ή Κινητό'));
+                                echo $this->Form->input('phone_number',array("label" => "Τηλέφωνο Επικοινωνίας",'placeholder' => 'Σταθερό ή Κινητό'));
                                 echo '<br/>';
                                 echo $this->Form->input('email',array("label"=>"E-mail",'placeholder'=>"Παρακαλούμε γράψτε το σε κανονική μορφή. Π.Χ. g.kolokotronis@elkethe.gr"));
                                 echo '<br/>';
                                 echo '<br/>';
                                 echo $this->Form->end('Κατάθεση αναφοράς'); 
-                           ?>
+                            }?>
                         </div>
     			</div>
             </div>

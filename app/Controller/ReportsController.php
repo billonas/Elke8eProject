@@ -15,40 +15,57 @@ class ReportsController extends AppController{
 
     function create() {
         if (!empty($this->data)) {
-            $this->Report->create();
-            if ($this->Report->save($this->data['Report'])) {
-                // Allagi onomatos eikonas
-                //$this->data['Report']['image'] = oti graftike stin vasi
-                $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
-                //crop an xreiazetai
-                //$this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
-                //$this->set('uploaded',$uploaded)
-                $this->Session->setFlash('The Report has been saved');
-                $this->redirect(array('controller' => 'reports','action'=>'create'), null, true);
-            } 
-            else {
-                $this->Session->setFlash('Report not saved. Try again.');
+            if(isset($this->data['Report']['image'])){
+                $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/', ''); 
+                $this->set('uploaded',$uploaded); 
+                if(!$this->data['Report']['edit']){
+                     $cropped = true;
+                     $this->set('cropped',$cropped);
+                     $this->set('imagePath',$uploaded['imagePath']);
+                }
             }
-        }
+            else{
+                if(isset($this->data['Report']['x1'])){
+                    $this->JqImgcrop->cropImage($this->data['Report']['w'], $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
+                    $imagePath = $this->data['Report']['imagePath'];
+                    $cropped = true;
+                    $this->set('cropped',$cropped);
+                    $this->set('imagePath',$imagePath);
+                }
+                else{
+                    $this->Report->create();
+                    if ($this->Report->save($this->data['Report'])) {
+                        $this->Session->setFlash('The Report has been saved');
+                        $this->redirect('reports/table');
+                    } 
+                    else {
+                        $this->Session->setFlash('Report not saved. Try again.');
+                    }
+                }
+            }
+       }
     }
+
     
     function edit($id = null) {
 //        if($this->Session->check('User')&&(($this->Session->read('User.user_type') == 'analyst')||($this->Session->read('User.user_type') == 'yperanalyst'))){
             if ($id==null) {
                 $this->Session->setFlash('Invalid ID');
-                $this->redirect(array('action'=>'table'), null, true);
+                $this->redirect('/reports/table');
             }
             if(empty($this->data)) {
                 $this->data = $this->Report->findById($id);
                 if(empty($this->data)){
                     $this->Session->setFlash('Invalid ID');
-                    $this->redirect(array('action'=>'table'), null, true);
+                    $this->redirect('/reports/table');
                 }
+                $report = $this->data;
+                $this->set('report',$report);
             } 
             else {
                 if ($this->Report->save($this->data)) {
                     $this->Session->setFlash('The Report has been saved');
-                    $this->redirect(array('action'=>'table'), null, true);
+                    $this->redirect('/reports/table');
                 } 
                 else {
                     $this->Session->setFlash('The Report could not be saved.Please, try again.');
