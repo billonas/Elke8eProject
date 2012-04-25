@@ -61,7 +61,7 @@
 														'name' => 'data[User][login]',
 														'label' => 'Σύνδεση',
 														'div' => false )).'</p>';	
-										    echo '<a href="#toregister" class="to_register">Δεν είστε μέλος? Εγγραφείτε! </a>';
+										    echo $this->Html->link('Δεν είστε μέλος? Εγγραφείτε τώρα!', array('controller' => 'users', 'action'=>'register'),array('class' => 'to_register'));
 										}
 								    ?>
                                     
