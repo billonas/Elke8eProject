@@ -32,6 +32,8 @@
                             <th>Κατηγορία</th>
                             <th>Δημοφηλές Eίδος</th>
                             <th>Κατάσταση</th>
+                            <th>Τελευταία Επεξεργασία</th>
+                            <th>Ενέργειες</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +63,19 @@
                                     <?php
                                         echo $report['Report']['state'];
                                     ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        if ( isset($report['Last_edited_by']) )
+                                            echo $report['Last_edited_by']['name'];
+                                            echo $report['Last_edited_by']['surname'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php echo $this->Html->link('Edit', array('action'=>'edit',$report['Report']['id'])); 
+                                          echo $this->Html->link('Delete', array('action'=>'delete',$report['Report']['id']));
+                                    ?>
+                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>

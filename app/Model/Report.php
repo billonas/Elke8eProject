@@ -9,10 +9,10 @@ class Report extends AppModel{
     var $name= 'Report';
     public $recursive = 3;
     public $belongsTo = array(
-          'HotSpecie' => array(
-             'className' => 'HotSpecie',
-             'foreignKey' => 'hot_id'
-           ),
+//          'HotSpecie' => array(
+//             'className' => 'HotSpecie',
+//             'foreignKey' => 'hot_id'
+//           ),
            'User' => array(
               'className' => 'User',
               'foreignKey' => 'observer'

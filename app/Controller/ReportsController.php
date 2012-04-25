@@ -80,21 +80,14 @@ class ReportsController extends AppController{
     
     function delete($id = null) {
 //        if($this->Session->check('User')&&($this->Session->read('User.user_type') == 'yperanalyst')){
-            if($id!=null){
-                $this->Session->setFlash('Invalid ID');
-                $this->redirect(array('action'=>'table'), null, true);
-            }
-            else{
-                // Διαγραφή εικόνων
-                if($this->set('report',$this->Report->delete($id))){
-                    $this->Session->setFlash('Report #'.$id.' deleted');
-                    $this->redirect(array('action'=>'table'), null, true);
-                }
-                else{
-                    $this->Session->setFlash('Report #'.$id.' not deleteed');
-                    $this->redirect(array('action'=>'table'), null, true);
-                }
-            }
+          if (!$id) {
+             $this->Session->setFlash('Invalid id for Task');
+             $this->redirect(array('action'=>'table'), null, true);
+          }
+          if ($this->Report->delete($id)) {
+             $this->Session->setFlash('Task #'.$id.' deleted');
+             $this->redirect(array('action'=>'table'), null, true);
+          }
 //        }
 //        else{
 //            $this->Session->setFlash('Access denied');
