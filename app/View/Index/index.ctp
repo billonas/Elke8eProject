@@ -18,7 +18,7 @@
   
       	<div class="middle_row">
 			<div class="middle_wrapper">
-            	<div id="slideshow" style="overflow-x: hidden; overflow-y: hidden; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; position: relative; ">
+            	<div id="slideshow">
                 
                 
               	</div>
