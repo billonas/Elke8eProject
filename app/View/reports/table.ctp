@@ -19,7 +19,7 @@
         <div>
             <h2><center>Πίνακας Αναφορών</center></h2>
             <?php if (empty($reports)): ?>
-                There are no tasks in this list
+                There are no reports
             <?php else: ?>
 
                 <?php //Print_r($reports[0]); ?>
@@ -30,7 +30,8 @@
                             <th>Ημερομηνία Υποβολής</th>
                             <th>Φωτογραφία Παρατήρησης</th>
                             <th>Κατηγορία</th>
-                            <th>Δημοφηλές είδος</th>
+                            <th>Δημοφηλές Eίδος</th>
+                            <th>Κατάσταση</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,10 +46,21 @@
                                     </center>
                                 </td>
                                 <td>
-                                    <?php echo $report['Category']['category_name'] ?>
+                                    <?php
+                                        if ( isset($report['Category']) )
+                                            echo $report['Category']['category_name'];
+                                    ?>
                                 </td>
                                 <td>
-                                    <?php echo $report['HotSpecie']['scientific_name'] ?>
+                                    <?php
+                                        if ( isset($report['HotSpecie']) )
+                                            echo $report['HotSpecie']['scientific_name'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        echo $report['Report']['state'];
+                                    ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
