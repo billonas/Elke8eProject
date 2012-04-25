@@ -4,15 +4,19 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="content-language" content="en-gb" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		
-		<?php 	echo $this->Html->css(array('main'), null, array('media' => 'screen')); 	?>
+		<title><?php echo $title_for_layout?></title>
+		<?php 	echo $this->Html->css(array('main'), null, array('media' => 'screen', 'rel' => 'stylesheet')); 	?>
+        <?php   echo $scripts_for_layout;?>
 		<!--[if lt IE 10 ]>
 			<?php 	echo $this->Html->css(array('hacks'), null, array('media' => 'screen')); 	?>
 		 <![endif]-->
+         
+
+         
 	</head>
 	<body>
 		<div class="wrapper">
-        	<div class="show_display"></div>
+        	
 			<div class="upper_row">
 				<?php echo
 					$this->Html->Link( 
@@ -35,7 +39,10 @@
                                 	<?php 
 										if($this->Session->check('UserUsername')) {
 											echo '<h1>Καλώς ήλθατε</h1>';
-											echo $this->Html->link('Logout', array('controller' => 'users', 'action'=>'logout'));
+											
+											echo $this->Html->link('Προβολή προσωπικού προφίλ', array('controller' => 'users', 'action'=>'profile'));
+											echo '</br></br>';
+											echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
                            
 									    }
 										else{
