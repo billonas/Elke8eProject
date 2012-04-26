@@ -9,7 +9,7 @@ class IndexController extends AppController{
   
   
   
-	public $helpers = array('Html', 'Session', 'js');
+	public $helpers = array('Html', 'Session','Js'); //To 'js' prepei na ginei 'Js' gia na douleuei
     function index()
     {
       $this->layout = 'template';  
