@@ -22,7 +22,8 @@ class ReportsController extends AppController{
 			        $tok = $tok1;      		
 		        }
 		    //briskw ena tuxaio arithmo tetoion wste na mhn uparxei eikona ston /img/reports pou na exei gia onoma auton
-		        do{ 
+		      
+                        do{ 
     			    $rand = rand();
 			        $name = "$rand.$tok";		
 		        }while(file_exists("../webroot/img/reports/$name"));
