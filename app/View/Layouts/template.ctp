@@ -21,7 +21,7 @@
 				<?php echo
 					$this->Html->Link( 
 						$this->Html->Image("hcmr-logo.png"), 
-						array('controller' => 'Index', 'action' => 'index'), 
+						array('controller' => 'pages', 'action' => 'display'), 
 						array('escape' => false));
 			    ?>
 				<ul class="upper_list" >
