@@ -145,19 +145,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                             <br/>
                            <?php  
                            if(isset($cropped)){ 
-                                echo $this->Form->input('date',array('type'=>'text','id'=>'date','label'=>'Ημερομηνία Παρατήρησης'));
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
+                                echo $this->Form->input('date',array('label'=>'Ημερομηνία Παρατήρησης'));
                                 echo '<br/>';
                                 echo '<div id="mapCanvas" style="clear:both"></div>';
                                 echo '<br/>';

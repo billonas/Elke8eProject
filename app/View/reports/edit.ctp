@@ -4,7 +4,7 @@
 		<meta http-equiv="content-language" content="en-gb" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>Επεξεργασία Αναφοράς</title>
-		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default'));	
+		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default','forms'));	
                 ?>
                 <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
 
@@ -51,17 +51,7 @@
                            
                             <br/>
                            <?php  
-                                echo $this->Form->input('date',array('type'=>'text','id'=>'datepicker','label'=>'Ημερομηνία Παρατήρησης','placeholder'=>'(mm/dd/yy)','disabled'=>'true'));
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
-                                echo '<br/>';
+                                echo $this->Form->input('date',array('label'=>'Ημερομηνία Παρατήρησης','placeholder'=>'(mm/dd/yy)','disabled'=>'true'));
                                 echo '<br/>';
                                 echo $this->Form->input('observation_site',array("label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps','disabled' =>'true'));
                                 echo '<br/>';
@@ -95,12 +85,12 @@
                         <div id="fragment-4">
                             <?php  
                                 echo '<br/>';
-                                echo $this->Form->input('age',array('type'=>'text','id'=>'age','label'=>'Ημερομηνία Γέννησης','placeholder'=>'(mm/dd/yy)'));
+                                echo $this->Form->input('age',array('type'=>'text','id'=>'age','label'=>'Ημερομηνία Γέννησης','placeholder'=>'(mm/dd/yy)','disabled'=>'true'));
                                 echo '<br/>';
-                                $options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια - Ανώτατη','disabled' =>'true');  
+                                $options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια - Ανώτατη');  
                                 echo $this->Form->input('education', array('options' => $options, 'default' => '    -    ','label'=>'Επίπεδο Εκπαίδευσης','disabled' =>'true'));
                                 echo '<br/>';
-                                $options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο','disabled' =>'true');  
+                                $options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο');  
                                 echo $this->Form->input('occupation', array('options' => $options, 'default' => '   -   ','label'=>'Ιδιότητα','disabled' =>'true'));
                                 echo '<br/>';
                                 echo '<br/>';
