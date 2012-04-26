@@ -46,7 +46,12 @@ class AppController extends Controller {
  *		will return an array with the success of each file upload
  */
    var $layout='template';
-   
+
+   function beforeRender()
+   {
+    $this->set('user', $this->Auth->user());
+    // In the views $user['User']['username'] would display the logged in users username
+   }
 
    function beforeFilter() 
    {
@@ -65,6 +70,9 @@ class AppController extends Controller {
             // change layout  
             $this->layout = 'admin';  
         }
+      $this->Auth->fields = array(
+        'username' => 'email', 
+        'password' => 'password');
 
     }
 	
