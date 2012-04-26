@@ -32,7 +32,8 @@
                         <li><a href="#fragment-2"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-3"><span>3. Επιπλέον Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-4"><span>4. Στοιχεία <br/>Παρατηρητή</span></a></li>  
-                        <li><a href="#fragment-5"><span>5. Στοιχεία <br/>Επικοινωνίας</span></a></li>  
+                        <li><a href="#fragment-5"><span>5. Στοιχεία <br/>Επικοινωνίας</span></a></li>
+                        <li><a href="#fragment-6"><span>5. Ανάλυση- <br/>Αξιολόγηση</span></a></li>
                 
                     </ul>
                         <div id="fragment-1">
@@ -116,6 +117,21 @@
                                 echo $this->Form->input('phone_number',array("label" => "Τηλέφωνο Επικοινωνίας",'placeholder' => 'Σταθερό ή Κινητό','disabled' =>'true'));
                                 echo '<br/>';
                                 echo $this->Form->input('email',array("label"=>"E-mail",'placeholder'=>"Παρακαλούμε γράψτε το σε κανονική μορφή. Π.Χ. g.kolokotronis@elkethe.gr",'disabled' =>'true'));
+
+                           ?>
+                        </div>
+                        <div id="fragment-6">
+                            <?php  
+                                echo '<br/>';
+//                                $options = array('-' => 'Άγνωστο', '1' => 'Ψάρι','2' => 'Κεφαλόποδο');  
+//                                echo $this->Form->input('category_id', array('options' => $options, 'default' => '-','label'=>'Κατηγορία Είδους'));
+//                                echo '<br/>';
+                                echo $this->Form->input('scientific_name',array("label" => "Επιστημονική Ονομασία",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));
+                                echo '<br/>';
+                                echo $this->Form->input('analyst_comments',array("label" => "Σχόλια-Παρατηρήσεις",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));
+                                echo '<br/>';
+                                $options = array('unknown' => 'Άγνωστη','confirmed' => 'Έγκυρη', 'unreliable' => 'Αναξιόπιστη');  
+                                echo $this->Form->input('state', array('options' => $options,'label'=>'Κατάσταση Αναφοράς'));
                                 echo '<br/>';
                                 echo '<br/>';
                                 echo $this->Form->end('Επεξεργασία αναφοράς'); 

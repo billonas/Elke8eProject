@@ -36,10 +36,11 @@ class ReportsController extends AppController{
                     $this->Report->create();
                     if ($this->Report->save($this->data['Report'])) {
                         $this->Session->setFlash('The Report has been saved');
-                        $this->redirect('reports/table');
+                        $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
                     } 
                     else {
                         $this->Session->setFlash('Report not saved. Try again.');
+                        $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
                     }
                 }
             }
@@ -81,12 +82,12 @@ class ReportsController extends AppController{
     function delete($id = null) {
 //        if($this->Session->check('User')&&($this->Session->read('User.user_type') == 'yperanalyst')){
           if (!$id) {
-             $this->Session->setFlash('Invalid id for Task');
-             $this->redirect(array('action'=>'table'), null, true);
+             //$this->Session->setFlash('Invalid id for Task');
+             $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
           }
           if ($this->Report->delete($id)) {
-             $this->Session->setFlash('Task #'.$id.' deleted');
-             $this->redirect(array('action'=>'table'), null, true);
+             //$this->Session->setFlash('Task #'.$id.' deleted');
+             $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
           }
 //        }
 //        else{

@@ -18,6 +18,8 @@
     <div class="middle_wrapper">
         <div>
             <h2><center>Πίνακας Αναφορών</center></h2>
+            
+            <?php echo $this->Session->flash(); ?>
             <?php if (empty($reports)): ?>
                 There are no reports
             <?php else: ?>

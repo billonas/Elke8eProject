@@ -17,10 +17,10 @@ class Report extends AppModel{
               'className' => 'User',
               'foreignKey' => 'observer'
             ),
-            'Category' => array(
-                'className' => 'Category',
-                'foreignKey' => 'category_id'
-            ),
+//            'Category' => array(
+//                'className' => 'Category',
+//                'foreignKey' => 'category_id'
+//            ),
             'Last_edited_by' => array(
                 'className' => 'User',
                 'foreignKey' => 'last_edited_by'

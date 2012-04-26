@@ -4,7 +4,7 @@
 		<meta http-equiv="content-language" content="en-gb" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>Αναφορά Παρατήρησης</title>
-		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default'));	
+		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default','forms'));	
                 ?>
                 <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -84,8 +84,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     float: left;
                 }
                 #infoPanel {
-                    float: left;
-                    margin-left: 10px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #999999;
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    border-radius: 10px;
                 }
                 #infoPanel div {
                     margin-bottom: 5px;
@@ -113,7 +117,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 if(!isset($cropped)){
                                     if(!isset($uploaded)){
                                         echo $this->Form->create('Report', array('action' => 'create', "enctype" => "multipart/form-data"));
-                                        echo $this->Form->input('image',array("type" => "file"));  
+                                        echo $this->Form->input('image',array("type" => "file",'label'=>'Φωτογραφία'));  
                                         echo $this->Form->input('edit',array("label"=>"Θέλετε να επεξεργαστείτε την φωτογραφία;",'type'=>'checkbox'));
                                         echo $this->Form->end('Ανέβασμα Φωτογραφίας'); 
                                     }
@@ -129,6 +133,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                     echo $this->Form->create('Report', array('action' => 'create',"enctype" => "multipart/form-data"));     
                                     echo $this->Html->image($imagePath); 
                                     echo $this->Form->input('main_photo',array('type'=>'hidden','value'=>$imagePath));
+                                    echo '<br/>';
                                     echo '<br/>';
                                     echo $this->Form->input('permissionUseMedia',array("label"=>"Mπορούν να χρησιμοποιηθούν οι φωτογραφίες σας;"));
                                     echo '<br/>';
@@ -152,13 +157,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 echo '<br/>';
                                 echo '<br/>';
                                 echo '<br/>';
-                                echo '<div id="mapCanvas"></div>';
+                                echo '<br/>';
+                                echo '<br/>';
+                                echo '<div id="mapCanvas" style="clear:both"></div>';
                                 echo '<br/>';
                                 echo '<div id="markerStatus" style="clear:both"><i>Click and drag the marker.</i></div>';
-                                echo $this->Form->input('observation_site',array('type'=>'text','id'=>'info',"label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
-                                echo '<br/>';
-                                echo '<br/>';
-                                //echo $this->Form->end('Κατάθεση αναφοράς'); 
+                                echo $this->Form->input('observation_site',array('type'=>'text','value'=>'info',"label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
+
                            }?>
                         </div>
                         <div id="fragment-3">
@@ -182,7 +187,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 echo $this->Form->input('comments', array('type' => 'textarea',"label" => "Επιπλέον Σχόλια",'placeholder' =>'Περιγράψτε ότι σας έκανε εντύπωση'));
                                 echo '<br/>';
                                 echo '<br/>';
-                                //echo $this->Form->end('Κατάθεση αναφοράς'); 
                             }?>
                         </div>  
                         <div id="fragment-4">
@@ -198,7 +202,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 echo $this->Form->input('occupation', array('options' => $options, 'default' => '   -   ','label'=>'Ιδιότητα'));
                                 echo '<br/>';
                                 echo '<br/>';
-                                //echo $this->Form->end('Κατάθεση αναφοράς'); 
                             }?>
                         </div>
                         <div id="fragment-5">
@@ -213,8 +216,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                 echo '<br/>';
                                 echo $this->Form->input('email',array("label"=>"E-mail",'placeholder'=>"Παρακαλούμε γράψτε το σε κανονική μορφή. Π.Χ. g.kolokotronis@elkethe.gr"));
                                 echo '<br/>';
+                                $options = array('unknown' => 'Άγνωστη','confirmed' => 'Έγκυρη', 'unreliable' => 'Αναξιόπιστη');  
+                                echo $this->Form->input('state', array('options' => $options,'value'=>'unknown','label'=>'Κατάσταση Αναφοράς','type'=>'hidden'));
                                 echo '<br/>';
-                                echo $this->Form->end('Κατάθεση αναφοράς'); 
+                                echo $this->Form->end('Κατάθεση Αναφοράς');
                             }?>
                         </div>
     			</div>
