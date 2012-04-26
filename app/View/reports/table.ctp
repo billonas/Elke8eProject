@@ -13,6 +13,11 @@
         $("#reportsTable").tablesorter({sortList: [[0,0]]}); //sort the first column in ascending order
     } 
 );
+    
+    function report_onclick(id)
+    {
+        window.location.href = '/reports/edit/' + id;
+    }
 </script>
 <div class="middle_row">
     <div class="middle_wrapper">
@@ -40,7 +45,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($reports as $report): ?>
-                            <tr>
+                            <tr onclick="report_onclick(<?php echo $report['Report']['id'] ?>)">
                                 <td>
                                     <?php echo $report['Report']['created'] ?>
                                 </td>
@@ -70,11 +75,13 @@
                                     <?php
                                         if ( isset($report['Last_edited_by']) )
                                             echo $report['Last_edited_by']['name'];
+                                            echo ' ';
                                             echo $report['Last_edited_by']['surname'];
                                     ?>
                                 </td>
                                 <td>
                                     <?php echo $this->Html->link('Edit', array('action'=>'edit',$report['Report']['id'])); 
+                                          echo ' ';
                                           echo $this->Html->link('Delete', array('action'=>'delete',$report['Report']['id']));
                                     ?>
                                     
