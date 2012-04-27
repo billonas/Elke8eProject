@@ -218,6 +218,22 @@ class UsersController extends AppController{
         //put your code here
     }
 
+    function captcha() 
+    {
+         $this->autoRender = false;
+         $this->layout='ajax';
+         if(!isset($this->Captcha)) { //if Component was not loaded throug $components array()
+          App::import('Component','Captcha'); //load it
+          $this->Captcha = new CaptchaComponent(); //make instance
+          $this->Captcha->startup($this); //and do some manually calling
+         }
+         //$width = isset($_GET['width']) ? $_GET['width'] : '120';
+         //$height = isset($_GET['height']) ? $_GET['height'] : '40';
+         //$characters = isset($_GET['characters']) && $_GET['characters'] > 1 ? $_GET['characters'] : '6';
+         //$this->Captcha->create($width, $height, $characters); //options, default are 120, 40, 6.
+         $this->Captcha->create();
+    }
+
     
 }
 
