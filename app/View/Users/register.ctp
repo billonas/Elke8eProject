@@ -32,6 +32,12 @@
 					$options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο'); 					  
 					echo '</br><p>'.$this->Form->input('User.occupation', 
 									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'id'=> 												 												'UserMembership')).'</p>';										  	
+					echo '</br><p>'.$this->Form->input('User.membership', 
+									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'id'=> 												 												'UserMembership')).'</p>';	
+										  
+					echo $this->Html->Image($this->Html->url(array('controller'=>'users', 'action'=>'captcha'), true),array('style'=>'','vspace'=>2)); 
+					echo '</br><p>'.$this->Form->input('User.captcha', 
+									  array('label' => array('class' => 'captcha', 'text' => 'Γράψτε αυτά που βλέπετε στην εικόνα:  '), 'autocomplete'=>'off', 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCaptcha', 'error'=>__('Failed validating code',true))).'</p>';		  	
 
 										  echo '</br><p>'.$this->Form->end(array(
 														'name' => 'data[User][register]',
