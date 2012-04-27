@@ -11,7 +11,6 @@
       {
          echo $this->Session->flash(); 
 
-         echo "Username:"  .$user['User']['email'];
          echo '</br>';
          echo "UserType:" .$this->Session->read('');
          echo '</br>';

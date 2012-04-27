@@ -16,20 +16,20 @@ class User extends AppModel
           )
       ); 
       
-      public $validate = array(  
-      'username'=>array(  
-            'rule'=>'notEmpty',
-            'required'=>true,
-            'allowEmpty'=>false,  
-            'message'=>'Παρακαλούμε πληκτρολογήστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου'  
-      ),  
-      'password'=>array(  
-            'rule'=>'notEmpty',  
-            'required'=>true,  
-            'allowEmpty'=>false,  
-            'message'=>'Παρακαλούμε πληκτρολογήστε το κωδικό σας'  
-      )  
-      ); 
+      //public $validate = array(  
+      //'username'=>array(  
+      //      'rule'=>'notEmpty',
+      //      'required'=>true,
+      //      'allowEmpty'=>false,  
+      //      'message'=>'Παρακαλούμε πληκτρολογήστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου'  
+      //),  
+      //'password'=>array(  
+      //      'rule'=>'notEmpty',  
+      //      'required'=>true,  
+      //      'allowEmpty'=>false,  
+      //      'message'=>'Παρακαλούμε πληκτρολογήστε το κωδικό σας'  
+      //)  
+      //); 
 
       function validate_user($data)
       {
@@ -52,6 +52,15 @@ class User extends AppModel
          }
          return $return;
       }
+      function getActivationHash()
+      {
+              if (!isset($this->id)) {
+                      return false;
+              }
+              return substr(Security::hash(Configure::read('Security.salt') . $this->field('email') . date('Ymd')), 0, 8);
+      }
+
+      
 }
 
 ?>
