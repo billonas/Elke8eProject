@@ -40,7 +40,7 @@
 
 										  echo '</br><p>'.$this->Form->end(array(
 														'name' => 'data[User][edit]',
-														'label' => 'Εγγραφή',
+														'label' => 'Ανανέωση',
 														'div' => false )).'</p>';									  
 								    ?>
 			    </div>
