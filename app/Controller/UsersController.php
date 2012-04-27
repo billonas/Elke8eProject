@@ -145,18 +145,14 @@ class UsersController extends AppController{
 
                   $fullname = $arr[0] .".". $surname;
 
-                 // $this->Session->write('UserUsername',$result['User']['email']);  
-                 // $this->Session->write('UserType', $result['User']['user_type']);
-                 // $this->Session->write('UserFullName',$fullname);  
-//                  $this->redirect($this->referer());
+                  $this->Session->write('UserUsername',$result['User']['email']);  
+                  $this->Session->write('UserType', $result['User']['user_type']);
+                  $this->Session->write('UserFullName',$fullname);  
+                  $url = $this->referer();
+
                   if($this->Auth->login($this->data))
                   {
-                      
-                     $url = $this->referer();
-                     $this->set('user', $this->Auth->user()); 
-                     $this->set('loggedIn', $this->Auth->loggedIn()); 
-//                     $this->flash('Πατήστε εδώ αν ο browser δεν σας ανακατευθύνει αυτόματα', $url, 4, 'login_success');
-				      $this->redirect(array('controller'=>'users','action'=>'index'));			  
+                     $this->flash('Πατήστε εδώ αν ο browser δεν σας ανακατευθύνει αυτόματα', $url, 4, 'login_success');
                   }
                }
                else 
@@ -179,14 +175,14 @@ class UsersController extends AppController{
     function logout() 
     {  
       if($this->Session->check('UserUsername')) 
-       {  
-           $this->Session->delete('UserUsername');  
-           $this->Session->delete('UserType');  
-           $this->Session->delete('UserFullName');  
-           $this->Session->setFlash('You have successfully logged out');  
-       }  
+      {  
+          $this->Auth->logout();
+          $this->Session->delete('UserUsername');  
+          $this->Session->delete('UserType');  
+          $this->Session->delete('UserFullName');  
+          $this->Session->setFlash('You have successfully logged out');  
+      }  
 
-           $this->Auth->logout();
        $this->redirect($this->referer()); 
     }
     
