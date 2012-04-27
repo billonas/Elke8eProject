@@ -11,11 +11,23 @@ class ReportsController extends AppController{
     public $components = array('JqImgcrop');
 
 
-
+   function checkImage($path){
+         $result = 1;
+         ini_set("display_errors", 0);
+   	 if(!exif_imagetype($path)){
+            $result = 0;
+	 }
+         ini_set("display_errors", 1);
+         return $result;
+   }
 
     function create() {
         if (!empty($this->data)) {
             if(isset($this->data['Report']['image'])){
+            	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
+  			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
+                        $this->redirect('create');
+                 }
                 //briskw thn katalhksh tou arxeiou gia na dwsw thn idia katalhksh sto kainourgio onoma
     	        $tok = strtok (  $this->request->data['Report']['image']['name'], "." );
                 while(($tok1 = strtok(".")) !== false){
