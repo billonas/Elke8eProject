@@ -7,7 +7,7 @@
  */
 class ReportsController extends AppController{
     var $name = 'Reports';
-    public $helpers = array('Html', 'Form', 'Cropimage', 'Js');
+    public $helpers = array('Html', 'Form', 'Cropimage', 'Js','Session');
     public $components = array('JqImgcrop');
 
 
@@ -15,39 +15,83 @@ class ReportsController extends AppController{
 
     function create() {
         if (!empty($this->data)) {
-            $this->Report->create();
-            if ($this->Report->save($this->data['Report'])) {
-                // Allagi onomatos eikonas
-                //$this->data['Report']['image'] = oti graftike stin vasi
-                $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/','');
-                //crop an xreiazetai
-                //$this->JqImgcrop->cropImage(151, $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
-                //$this->set('uploaded',$uploaded);
-                $this->Session->setFlash('The Report has been saved');
-            } 
-            else {
-                $this->Session->setFlash('Report not saved. Try again.');
+            if(isset($this->data['Report']['image'])){
+                //briskw thn katalhksh tou arxeiou gia na dwsw thn idia katalhksh sto kainourgio onoma
+    	        $tok = strtok (  $this->request->data['Report']['image']['name'], "." );
+                while(($tok1 = strtok(".")) !== false){
+			        $tok = $tok1;      		
+		        }
+		    //briskw ena tuxaio arithmo tetoion wste na mhn uparxei eikona ston /img/reports pou na exei gia onoma auton
+		      
+                        do{ 
+    			    $rand = rand();
+			        $name = "$rand.$tok";		
+		        }while(file_exists("../webroot/img/reports/$name"));
+		        //allazw to onoma tou arxeiou kai to kanw ton arithmo pou brhka (me thn katallhlh katalhksh)
+		        //(auto den ephreazei tpt, dld den xanetai to arxeio)
+                $this->request->data['Report']['image']['name'] = $name;
+                $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/', ''); 
+                $this->set('uploaded',$uploaded); 
+                if(!$this->data['Report']['edit']){
+                     $cropped = true;
+                     $this->set('cropped',$cropped);
+                     $this->set('imagePath',$uploaded['imagePath']);
+                }
             }
-        }
+            else{
+                if(isset($this->data['Report']['x1'])){
+                    $this->JqImgcrop->cropImage($this->data['Report']['w'], $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
+                    $imagePath = $this->data['Report']['imagePath'];
+                    $cropped = true;
+                    $this->set('cropped',$cropped);
+                    $this->set('imagePath',$imagePath);
+                }
+                else{
+                    $this->Report->create();
+                    if ($this->Report->save($this->data['Report'])) {
+                        $name = $this->data['Report']['main_photo'];  //pernw to onoma ths eikonas
+    		            $newNameId = $this->Report->id;  //to id ths eggrafhs pou molis prostethhke
+			            $tok = strtok (  $name, "." ); //briskw thn katalhksh ths eikonas
+                	    while(($tok1 = strtok(".")) !== false){
+				            $tok = $tok1;      		
+			            }
+			//dinw sthn eikona gia onoma to id ths eggrafhs(me thn katallhlh katalhksh) kai th metaferw tautoxrona ston fakelo
+                        //Model/photos
+			            $newName = "../webroot/img/photos/$newNameId.$tok";  
+			            rename("../webroot$name", $newName);
+			            $this->Report->saveField("main_photo", $newName); //allazw to onoma ths eikonas katallhla
+                        $this->Session->setFlash('The Report has been saved');
+                        $this->redirect('table');
+                    } 
+                    else {
+                        $this->Session->setFlash('Report not saved. Try again.');
+                        $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
+                    }
+                }
+            }
+       }
     }
+
     
     function edit($id = null) {
 //        if($this->Session->check('User')&&(($this->Session->read('User.user_type') == 'analyst')||($this->Session->read('User.user_type') == 'yperanalyst'))){
             if ($id==null) {
                 $this->Session->setFlash('Invalid ID');
-                $this->redirect(array('action'=>'table'), null, true);
+                $this->redirect('table');
             }
             if(empty($this->data)) {
                 $this->data = $this->Report->findById($id);
                 if(empty($this->data)){
                     $this->Session->setFlash('Invalid ID');
-                    $this->redirect(array('action'=>'table'), null, true);
+                    $this->redirect('table');
                 }
+                $report = $this->data;
+                $this->set('report',$report);
             } 
             else {
                 if ($this->Report->save($this->data)) {
                     $this->Session->setFlash('The Report has been saved');
-                    $this->redirect(array('action'=>'table'), null, true);
+                    $this->redirect('table');
                 } 
                 else {
                     $this->Session->setFlash('The Report could not be saved.Please, try again.');
@@ -62,21 +106,17 @@ class ReportsController extends AppController{
     
     function delete($id = null) {
 //        if($this->Session->check('User')&&($this->Session->read('User.user_type') == 'yperanalyst')){
-            if($id!=null){
-                $this->Session->setFlash('Invalid ID');
-                $this->redirect(array('action'=>'table'), null, true);
-            }
-            else{
-                // Διαγραφή εικόνων
-                if($this->set('report',$this->Report->delete($id))){
-                    $this->Session->setFlash('Report #'.$id.' deleted');
-                    $this->redirect(array('action'=>'table'), null, true);
-                }
-                else{
-                    $this->Session->setFlash('Report #'.$id.' not deleteed');
-                    $this->redirect(array('action'=>'table'), null, true);
-                }
-            }
+          if (!$id) {
+             //$this->Session->setFlash('Invalid id for Task');
+             $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
+          }
+          $report = $this->Report->findById($id); //pernw ta stoixeia gia na brw pithana media(eikones)
+          if ($this->Report->delete($id)) {
+             if($report['Report']['main_photo'])  //diagrafw thn eikona pou antistoixouse sthn eggrafh, ama uparxei
+         	    unlink($report['Report']['main_photo']);
+             $this->Session->setFlash('Task #'.$id.' deleted');
+             $this->redirect(array('action'=>'table'), null, true);
+          }
 //        }
 //        else{
 //            $this->Session->setFlash('Access denied');
