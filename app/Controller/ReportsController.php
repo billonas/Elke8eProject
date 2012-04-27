@@ -13,7 +13,7 @@ class ReportsController extends AppController{
 
    function checkImage($path){
          $result = 1;
-         ini_set("display_errors", 0);
+         ini_set("display_errors", 0);  //xreiazetai gia na mhn bgainei warning an den einai foto
    	 if(!exif_imagetype($path)){
             $result = 0;
 	 }
@@ -24,6 +24,7 @@ class ReportsController extends AppController{
     function create() {
         if (!empty($this->data)) {
             if(isset($this->data['Report']['image'])){
+            	//koitaei an einai ontws fotografia auth pou ebale o xrhsths
             	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
   			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
                         $this->redirect('create');
