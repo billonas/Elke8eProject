@@ -44,7 +44,24 @@
                     </thead>
                     <tbody>
                         <?php foreach ($reports as $report): ?>
-                        <?php $reportStatus = "pending"; // classes are {"pending", "rejected", "verified"} ?>
+                        <?php
+                            // Determine the status of the report
+                            $reportStatus = "pending"; // classes are {"pending", "rejected", "verified"}
+                            if ( isset($report['Report']['state']) )
+                            {
+                                switch ($report['Report']['state'])
+                                {
+                                    case "eparkhs":
+                                        $reportStatus = "verified";
+                                        break;
+                                    case "aneparkhs":
+                                        $reportStatus = "rejected";
+                                        break;
+                                    case "unknown":
+                                        break;
+                                }
+                            }
+                        ?>
                             <tr class="report <?php echo $reportStatus ?>" onclick="report_onclick(<?php echo $report['Report']['id'] ?>)">
                                 <td>
                                     <?php echo $report['Report']['created'] ?>
