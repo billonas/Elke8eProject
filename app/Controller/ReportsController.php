@@ -38,16 +38,16 @@ class ReportsController extends AppController{
                 while(($tok1 = strtok(".")) !== false){
 			        $tok = $tok1;      		
 		        }
-		    //briskw ena tuxaio arithmo tetoion wste na mhn uparxei eikona ston /img/reports pou na exei gia onoma auton
+		    //briskw ena tuxaio arithmo tetoion wste na mhn uparxei eikona ston /img/temporary pou na exei gia onoma auton
 		      
                         do{ 
     			    $rand = rand();
 			        $name = "$rand.$tok";		
-		        }while(file_exists("../webroot/img/reports/$name"));
+		        }while(file_exists("../webroot/img/temporary/$name"));
 		        //allazw to onoma tou arxeiou kai to kanw ton arithmo pou brhka (me thn katallhlh katalhksh)
 		        //(auto den ephreazei tpt, dld den xanetai to arxeio)
                 $this->request->data['Report']['image']['name'] = $name;
-                $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/reports/', ''); 
+                $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/temporary/', ''); 
                 $this->set('uploaded',$uploaded); 
                 if(!$this->data['Report']['edit']){
                      $cropped = true;
@@ -74,7 +74,7 @@ class ReportsController extends AppController{
 			            }
 			//dinw sthn eikona gia onoma to id ths eggrafhs(me thn katallhlh katalhksh) kai th metaferw tautoxrona ston fakelo
                         //Model/photos
-			            $newName = "../webroot/img/photos/$newNameId.$tok";  
+			            $newName = "../webroot/img/report/$newNameId.$tok";  
 			            rename("../webroot$name", $newName);
 			            $this->Report->saveField("main_photo", $newName); //allazw to onoma ths eikonas katallhla
                         $this->Session->setFlash('The Report has been saved');
