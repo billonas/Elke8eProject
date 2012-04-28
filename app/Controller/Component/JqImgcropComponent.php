@@ -106,4 +106,4 @@ class JqImgcropComponent extends Component {
         return $cropped; 
     } 
 } 
-?> 
+?>

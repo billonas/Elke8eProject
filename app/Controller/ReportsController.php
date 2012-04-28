@@ -7,9 +7,13 @@
  */
 class ReportsController extends AppController{
     var $name = 'Reports';
-    public $helpers = array('Html', 'Form', 'Cropimage', 'Js','Session');
+    public $helpers = array('Html', 'Form', 'Cropimage', 'Js','Session', 'Xls');
     public $components = array('JqImgcrop');
 
+   function export() { //http://eureka.ykyuen.info/2009/10/04/cakephp-export-data-to-a-xls-file/       
+   	$data = $this->Report->find('all');
+   	$this->set('reports', $data);
+   }
 
    function checkImage($path){
          $result = 1;

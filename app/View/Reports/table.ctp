@@ -3,7 +3,6 @@
  * @author darkmatter
  */
 ?>
-
 <?php echo $this->Html->css(array('main', 'jquery-ui', 'tablesorter', 'reportsTable')); ?>
 <?php echo $this->Html->script(array('jquery.min', 'jquery-ui.min', 'jquery.tablesorter.min')); ?>
 
