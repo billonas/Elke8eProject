@@ -22,7 +22,7 @@ table.tablesorter thead tr .header {
 table.tablesorter tbody td {
 	color: #3D3D3D;
 	padding: 4px;
-	background-color: #FFF;
+/*	background-color: #FFF;*/
 	vertical-align: top;
 }
 table.tablesorter tbody tr.odd td {
@@ -36,4 +36,22 @@ table.tablesorter thead tr .headerSortDown {
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
+}
+
+
+.rejected {
+    background-color: crimson;
+}
+
+.verified {
+    background-color: lime;
+}
+
+.pending {
+    background-color: silver;
+}
+
+.report:hover {
+    background-color: lightblue;
+    cursor: pointer;
 }
