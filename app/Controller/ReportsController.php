@@ -73,8 +73,8 @@ class ReportsController extends AppController{
 				            $tok = $tok1;      		
 			            }
 			//dinw sthn eikona gia onoma to id ths eggrafhs(me thn katallhlh katalhksh) kai th metaferw tautoxrona ston fakelo
-                        //Model/photos
-			            $newName = "../webroot/img/report/$newNameId.$tok";  
+                        //webroot/img/reports
+			            $newName = "../webroot/img/reports/$newNameId.$tok";  
 			            rename("../webroot$name", $newName);
 			            $this->Report->saveField("main_photo", $newName); //allazw to onoma ths eikonas katallhla
                         $this->Session->setFlash('The Report has been saved');
