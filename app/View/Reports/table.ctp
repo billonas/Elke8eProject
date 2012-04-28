@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($reports as $report): ?>
-                        <?php $reportStatus = "pending"; ?>
+                        <?php $reportStatus = "pending"; // classes are {"pending", "rejected", "verified"} ?>
                             <tr class="report <?php echo $reportStatus ?>" onclick="report_onclick(<?php echo $report['Report']['id'] ?>)">
                                 <td>
                                     <?php echo $report['Report']['created'] ?>
