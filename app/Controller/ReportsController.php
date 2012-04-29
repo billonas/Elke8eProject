@@ -26,7 +26,11 @@ class ReportsController extends AppController{
    }
 
     function create() {
-        if (!empty($this->data)) {
+        if (!empty($this->data)){
+            if (($this->data['Report']['image']['name']=='')){
+                
+            }
+            else
             if(isset($this->data['Report']['image'])){
             	// CHECK IF INPUT FILE IS IMAGE FORMAT
 //            	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
@@ -114,7 +118,6 @@ class ReportsController extends AppController{
             else {
                 if ($this->Report->save($this->data)) {
                     $this->Session->setFlash('The Report has been saved');
-                    $this->redirect('table');
                 } 
                 else {
                     $this->Session->setFlash('The Report could not be saved.Please, try again.');
@@ -135,10 +138,10 @@ class ReportsController extends AppController{
           }
           $report = $this->Report->findById($id); //pernw ta stoixeia gia na brw pithana media(eikones)
           if ($this->Report->delete($id)) {
-             if($report['Report']['main_photo'])  //diagrafw thn eikona pou antistoixouse sthn eggrafh, ama uparxei
+             if(file_exists($report['Report']['main_photo']))  //diagrafw thn eikona pou antistoixouse sthn eggrafh, ama uparxei
          	    unlink($report['Report']['main_photo']);
              $this->Session->setFlash('Task #'.$id.' deleted');
-             $this->redirect(array('action'=>'table'), null, true);
+             $this->redirect('table');
           }
 //        }
 //        else{

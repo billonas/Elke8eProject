@@ -27,20 +27,20 @@ class Report extends AppModel{
             )
      );
     
-//    public $validate = array(
+    public $validate = array(
 //        'habitat' => array(
 //                'rule' => 'alphaNumeric',
 //                'rule' => array('minLength', 4),
 //                'allowEmpty' => true,
 //                'message'  => 'Παρακαλώ περιγράψτε τον βιότοπο της παρατήρησης'
 //        ),
-//        'email' => array(
-//            'email' => array(
-//                'rule'     => 'email',
-//                'allowEmpty' => true,
-//                'message'  => 'Το Email δεν έχει κανονική μορφή'
-//            )
-//        ),
+        'email' => array(
+            'email' => array(
+                'rule'     => 'email',
+                'allowEmpty' => true,
+                'message'  => 'Το Email δεν έχει κανονική μορφή'
+            )
+        ),
 //        'depth' => array(
 //            'AlphaNumeric' => array(
 //                'rule'  => 'alphaNumeric',
@@ -52,12 +52,12 @@ class Report extends AppModel{
 //                'message' => 'Παρακαλώ δώστε ένα έγκυρο βάθος (< 9999)'
 //            )*/
 //        ),
-//        'date' => array(
-//            'rule'       => 'date',
-//            'message'    => 'Παρακαλώ συμπληρώστε μια κανονική ημερομηνία(Π.Χ. 12/03/2012)',
-//            'allowEmpty' => false
-//        )
-//    );
+        'date' => array(
+            'rule'       => 'date',
+            'message'    => 'Παρακαλώ συμπληρώστε μια κανονική ημερομηνία(Π.Χ. 12/03/2012)',
+            'allowEmpty' => false
+        )
+    );
 }
 
 ?>
