@@ -62,22 +62,13 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'root',
+		'host' => 'devnet.su',
+		'login' => 'elkethedev',
+		'password' => 'd3v5@3lk3th3pr0j3ct',
 		'database' => 'elkethe',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
-        
-//        'datasource' => 'Database/Mysql',
-//        'persistent' => false,
-//        'host' => 'devnet.su',
-//        'login' => 'elkethedev',
-//        'password' => 'd3v5@3lk3th3pr0j3ct',
-//        'database' => 'elkethe',
-//        'prefix' => '',
-//        //'encoding' => 'utf8',
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',
