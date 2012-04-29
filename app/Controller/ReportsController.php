@@ -28,24 +28,22 @@ class ReportsController extends AppController{
     function create() {
         if (!empty($this->data)) {
             if(isset($this->data['Report']['image'])){
-            	//koitaei an einai ontws fotografia auth pou ebale o xrhsths
+            	// CHECK IF THE INPUT FILE IS IMAGE FILE FORMAT
             	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
   			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
                         $this->redirect('create');
-                 }
-                //briskw thn katalhksh tou arxeiou gia na dwsw thn idia katalhksh sto kainourgio onoma
+                }
+                //FIND FILE EXTENSION
     	        $tok = strtok (  $this->request->data['Report']['image']['name'], "." );
                 while(($tok1 = strtok(".")) !== false){
 			        $tok = $tok1;      		
 		        }
-		    //briskw ena tuxaio arithmo tetoion wste na mhn uparxei eikona ston /img/temporary pou na exei gia onoma auton
-		      
-                        do{ 
-    			    $rand = rand();
-			        $name = "$rand.$tok";		
-		        }while(file_exists("../webroot/img/temporary/$name"));
-		        //allazw to onoma tou arxeiou kai to kanw ton arithmo pou brhka (me thn katallhlh katalhksh)
-		        //(auto den ephreazei tpt, dld den xanetai to arxeio)
+                //FIND A RANDOM NAME WHICH DOESNT BELONG TO ANY OTHER FILE ON TEMPORARY DIR        
+                do{ 
+                    $rand = rand();
+                        $name = "$rand.$tok";		
+                }while(file_exists("../webroot/img/temporary/$name"));
+                //CHANGE THE NAME OF THE FILE TO THE RANDOM ONE
                 $this->request->data['Report']['image']['name'] = $name;
                 $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/temporary/', ''); 
                 $this->set('uploaded',$uploaded); 
@@ -57,6 +55,7 @@ class ReportsController extends AppController{
             }
             else{
                 if(isset($this->data['Report']['x1'])){
+                    //CROP MAGE ACCORDING TO INPUT
                     $this->JqImgcrop->cropImage($this->data['Report']['w'], $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
                     $imagePath = $this->data['Report']['imagePath'];
                     $cropped = true;
@@ -66,18 +65,25 @@ class ReportsController extends AppController{
                 else{
                     $this->Report->create();
                     if ($this->Report->save($this->data['Report'])) {
-                        $name = $this->data['Report']['main_photo'];  //pernw to onoma ths eikonas
-    		            $newNameId = $this->Report->id;  //to id ths eggrafhs pou molis prostethhke
-			            $tok = strtok (  $name, "." ); //briskw thn katalhksh ths eikonas
-                	    while(($tok1 = strtok(".")) !== false){
-				            $tok = $tok1;      		
-			            }
-			//dinw sthn eikona gia onoma to id ths eggrafhs(me thn katallhlh katalhksh) kai th metaferw tautoxrona ston fakelo
-                        //webroot/img/reports
-			            $newName = "../webroot/img/reports/$newNameId.$tok";  
-			            rename("../webroot$name", $newName);
-			            $this->Report->saveField("main_photo", "reports/$newNameId.$tok"); //allazw to onoma ths eikonas katallhla
+                        //RENAME IMAGE FILE WITH THE NAME OF THE RECORD AND MOVE IT TO REPORTS DIR
+                        $name = $this->data['Report']['main_photo'];  
+                        $newNameId = $this->Report->id;  
+                        $tok = strtok ($name, "." );
+                        while(($tok1 = strtok(".")) !== false){
+                            $tok = $tok1;      		
+                        }
+			//RENAME IMAGE FILE WITH THE NAME OF THE RECORD AND MOVE IT TO REPORTS DIR
+                        $newName = "../webroot/img/reports/$newNameId.$tok";  
+                        rename("../webroot$name", $newName);
+                        $this->Report->saveField("main_photo", "reports/$newNameId.$tok"); 
                         $this->Session->setFlash('The Report has been saved');
+                        //UPLOAD EXTRA IMAGE FILES, IF THERE ARE.
+//                        if(isset($this->data['Report']['image2'])){
+//                            $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image2'], '/img/temporary/', ''); 
+//                        }
+//                        if(isset($this->data['Report']['image3'])){
+//                            $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image3'], '/img/temporary/', ''); 
+//                        }
                         $this->redirect('table');
                     } 
                     else {

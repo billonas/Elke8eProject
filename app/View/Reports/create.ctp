@@ -94,6 +94,9 @@
                         <div id="fragment-3">
                             <?php
                             if(isset($cropped)){ 
+                                echo $this->Form->input('image2',array("type" => "file",'label'=>'Επιπλέον Φωτογραφία 1'));  
+                                echo $this->Form->input('image3',array("type" => "file",'label'=>'Επιπλέον Φωτογραφία 2'));
+                                echo '</br>';
                                 $options = array();
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');
