@@ -23,19 +23,23 @@
 <div class="middle_row">
     <div class="middle_wrapper">
         <div>
-            <?php //echo $this->GoogleMapV3->map(array('map'=>array(
-            //'defaultLat' => 39, # only last fallback, use Configure::write('Google.lat', ...); to define own one
-            //'defaultLng' => 21, # only last fallback, use Configure::write('Google.lng', ...); to define own one
-            //'defaultZoom' => 5,
-            //),'div'=>array('id'=>'my_map', 'height'=>'400', 'width'=>'700')));
-            //$options = array(
-            //'lat'=>39,
-            //'lng'=>21,
-            //);
-            //$this->GoogleMapV3->addMarker($options);
-            //echo $this->GoogleMapV3->script(); ?>
             <br/>
             <h2><center>Πίνακας Αναφορών</center></h2>
+            <br/>
+            
+            <?php
+                echo $this->GoogleMapV3->map(array('map'=>array(
+                'defaultLat' => 39, # only last fallback, use Configure::write('Google.lat', ...); to define own one
+                'defaultLng' => 21, # only last fallback, use Configure::write('Google.lng', ...); to define own one
+                'defaultZoom' => 5,
+                ),'div'=>array('id'=>'my_map', 'height'=>'400', 'width'=>'700')));
+                $options = array(
+                'lat'=>39,
+                'lng'=>21,
+                );
+                $this->GoogleMapV3->addMarker($options);
+                echo $this->GoogleMapV3->script();
+            ?>
             <br/>
             
             <?php echo $this->Session->flash(); ?>

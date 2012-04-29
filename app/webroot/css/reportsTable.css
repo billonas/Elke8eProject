@@ -72,3 +72,11 @@ h2 {
     background-color: lightblue;
     cursor: pointer;
 }
+
+
+/* Rules for the map */
+.map {
+    border: black solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
