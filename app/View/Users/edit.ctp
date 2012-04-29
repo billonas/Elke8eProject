@@ -1,3 +1,5 @@
+<?php echo $this->Html->css(array('forms'));	
+                ?>
 <?php $this->set('title_for_layout', 'Επεξεργασία Προφίλ - ΕΛΚΕΘΕ');?> 
  
     <div class="middle_row">

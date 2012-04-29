@@ -11,8 +11,6 @@
 <script>
   $(document).ready(function() {
     $("#tabs").tabs();
-    $( ".selector" ).datepicker( "option", "dateFormat", 'yyyy-mm-dd' );
-    $("#datepicker").datepicker();
   });
 </script>
 
@@ -39,7 +37,7 @@
                         <div id="fragment-1">
                             <?php 
                                 echo '<br/>';
-                                echo $this->Form->create('Report', array('action' => 'create',"enctype" => "multipart/form-data"));     
+                                echo $this->Form->create('Report', array('action' => 'edit',"enctype" => "multipart/form-data"));     
                                 echo $this->Form->hidden('id');
                                 echo $this->Html->image($report['Report']['main_photo']); 
                                 echo '<br/>';
@@ -61,8 +59,8 @@
                         </div>
                         <div id="fragment-3">
                             <?php
-                                echo $this->Html->image($report['Report']['additional_photo1']);
-                                echo $this->Html->image($report['Report']['additional_photo2']);
+                                //echo $this->Html->image($report['Report']['additional_photo1']);
+                                //echo $this->Html->image($report['Report']['additional_photo2']);
                                 $options = array();
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');

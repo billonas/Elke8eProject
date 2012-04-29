@@ -8,7 +8,7 @@
                 ?>
                 <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
                 <?php
-                    echo '<script type="text/javascript" src="'.$this->GoogleMapV3->apiUrl().'"></script>';
+                    //echo '<script type="text/javascript" src="'.$this->GoogleMapV3->apiUrl().'"></script>';
                 ?>
 <script>
   $(document).ready(function() {

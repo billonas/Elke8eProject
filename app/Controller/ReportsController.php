@@ -29,10 +29,10 @@ class ReportsController extends AppController{
         if (!empty($this->data)) {
             if(isset($this->data['Report']['image'])){
             	// CHECK IF INPUT FILE IS IMAGE FORMAT
-            	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
-  			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
-                        $this->redirect('create');
-                }
+//            	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
+//  			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
+//                        $this->redirect('create');
+//                }
                 // FIND FILE EXTENSION
     	        $tok = strtok (  $this->request->data['Report']['image']['name'], "." );
                 while(($tok1 = strtok(".")) !== false){
