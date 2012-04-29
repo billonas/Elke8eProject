@@ -36,9 +36,6 @@
             <?php echo $this->Html->link('<h2>Εγγραφείτε</h2>
                 <p>Γίνετε μέλος της κοινότητάς μας και βοηθήστε μας να προστατεύσουμε τις ελληνικές θάλασσες</p>', 
 											array('controller' => 'users', 'action'=>'register'),array('escape' => false));?>
-            <a href="#">
-                
-            </a>
 	    </div>
         <div class="comments">
             <div><br />Powered by <a href="http://cakephp.org/">Cake.php</a>, <a href="http://jquery.com/">jQuery</a> and <a href="http://modernizr.com/">Modernizr</a>.</div>
