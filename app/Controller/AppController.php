@@ -49,30 +49,30 @@ class AppController extends Controller {
 
    function beforeRender()
    {
-    $this->set('user', $this->Auth->user());
+    //$this->set('user', $this->Auth->user());
     // In the views $user['User']['username'] would display the logged in users username
    }
 
    function beforeFilter() 
    {
-        // if admin url requested  
-        if(isset($this->params['admin']) && $this->params['admin']) {  
-            // check user is logged in  
-            if( !$this->Session->check('User') ) {  
-                $this->Session->setFlash('You must be logged in for that action.','flash_bad');  
-                $this->redirect('/login');  
-            }  
-  
-            // save user data  
-            $this->_User = $this->Session->read('User');  
-            $this->set('user',$this->_User);  
-  
-            // change layout  
-            $this->layout = 'admin';  
-        }
-      $this->Auth->fields = array(
-        'username' => 'email', 
-        'password' => 'password');
+//        // if admin url requested  
+//        if(isset($this->params['admin']) && $this->params['admin']) {  
+//            // check user is logged in  
+//            if( !$this->Session->check('User') ) {  
+//                $this->Session->setFlash('You must be logged in for that action.','flash_bad');  
+//                $this->redirect('/login');  
+//            }  
+//  
+//            // save user data  
+//            $this->_User = $this->Session->read('User');  
+//            $this->set('user',$this->_User);  
+//  
+//            // change layout  
+//            $this->layout = 'admin';  
+//        }
+//      $this->Auth->fields = array(
+//        'username' => 'email', 
+//        'password' => 'password');
 
     }
 	

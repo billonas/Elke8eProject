@@ -5,7 +5,9 @@
 ?>
 <?php echo $this->Html->css(array('main', 'jquery-ui', 'tablesorter', 'reportsTable')); ?>
 <?php echo $this->Html->script(array('jquery.min', 'jquery-ui.min', 'jquery.tablesorter.min')); ?>
-
+<?php
+    echo '<script type="text/javascript" src="'.$this->GoogleMapV3->apiUrl().'"></script>';
+?>
 <script>
     $(document).ready(function() 
     { 
@@ -21,6 +23,8 @@
 <div class="middle_row">
     <div class="middle_wrapper">
         <div>
+            <?php //echo $this->GoogleMapV3->map(array('div'=>array('id'=>'my_map', 'height'=>'400', 'width'=>'100%'))); ?>
+            <?php //echo $this->GoogleMapV3->script() ?>
             <h2><center>Πίνακας Αναφορών</center></h2>
             
             <?php echo $this->Session->flash(); ?>
@@ -29,7 +33,6 @@
             <?php else: ?>
 
                 <?php //Print_r($reports[0]); ?>
-
                 <table id="reportsTable" class="tablesorter reportsTable">
                     <thead>
                         <tr>

@@ -7,57 +7,9 @@
 		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default','forms'));	
                 ?>
                 <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script >
-var geocoder = new google.maps.Geocoder();
-
-function updateMarkerStatus(str) {
-  document.getElementById('markerStatus').innerHTML = str;
-}
-
-function updateMarkerPosition(latLng) {
-  document.getElementById('info').innerHTML = [
-    latLng.lat(),
-    latLng.lng()
-  ].join(', ');
-}
-
-
-function initialize() {
-  var latLng = new google.maps.LatLng(38.0397, 24.644);
-  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
-    zoom: 6,
-    center: latLng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  var marker = new google.maps.Marker({
-    position: latLng,
-    title: 'Point A',
-    map: map,
-    draggable: true
-  });
-  
-  // Update current position info.
-  updateMarkerPosition(latLng);
-  
-  // Add dragging event listeners.
-  google.maps.event.addListener(marker, 'dragstart', function() {
-    updateMarkerAddress('Dragging...');
-  });
-  
-  google.maps.event.addListener(marker, 'drag', function() {
-    updateMarkerStatus('Dragging...');
-    updateMarkerPosition(marker.getPosition());
-  });
-  
-  google.maps.event.addListener(marker, 'dragend', function() {
-    updateMarkerStatus('Drag ended');
-  });
-}
-
-// Onload handler to fire off the app.
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+                <?php
+                    echo '<script type="text/javascript" src="'.$this->GoogleMapV3->apiUrl().'"></script>';
+                ?>
 <script>
   $(document).ready(function() {
     $("#tabs").tabs();
@@ -72,29 +24,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		 <![endif]-->
 	</head>
 	<body>
-                <style>
-                .ui-tabs .ui-tabs-hide {
-                    position: absolute;
-                    left: -10000px;
-                }          
-
-                #mapCanvas {
-                    width: 500px;
-                    height: 400px;
-                    float: left;
-                }
-                #infoPanel {
-                    border-width: 1px;
-                    border-style: solid;
-                    border-color: #999999;
-                    -webkit-border-radius: 10px;
-                    -moz-border-radius: 10px;
-                    border-radius: 10px;
-                }
-                #infoPanel div {
-                    margin-bottom: 5px;
-                }
-                </style>
 		<div class="middle_row">
         	<div class="middle_wrapper">
                 <?php echo $this->Session->flash();?>    
@@ -147,10 +76,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
                            if(isset($cropped)){ 
                                 echo $this->Form->input('date',array('label'=>'Ημερομηνία Παρατήρησης'));
                                 echo '<br/>';
-                                echo '<div id="mapCanvas" style="clear:both"></div>';
-                                echo '<br/>';
-                                echo '<div id="markerStatus" style="clear:both"><i>Click and drag the marker.</i></div>';
-                                echo $this->Form->input('observation_site',array('type'=>'text','value'=>'info',"label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
+                                echo $this->GoogleMapV3->map(array('map'=>array(
+                                'defaultLat' => 39, # only last fallback, use Configure::write('Google.lat', ...); to define own one
+                                'defaultLng' => 21, # only last fallback, use Configure::write('Google.lng', ...); to define own one
+                                'defaultZoom' => 5,
+                                ),'div'=>array('id'=>'my_map', 'height'=>'400', 'width'=>'400')));
+                                $options = array(
+                                'lat'=>39,
+                                'lng'=>21,
+                                );
+                                $this->GoogleMapV3->addMarker($options);
+                                echo $this->GoogleMapV3->script(); 
+                                echo $this->Form->input('observation_site',array("label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
 
                            }?>
                         </div>
