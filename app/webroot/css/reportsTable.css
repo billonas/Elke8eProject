@@ -39,6 +39,12 @@ background-color: #8dbdd8;
 }
 
 
+h2 {
+    color: rgb(56, 59, 63);
+    text-decoration: none;
+    font-family: Helvetica,sans-serif;
+}
+
 .tableImage {
     max-width: 100px;
     max-height: 64px;
@@ -65,4 +71,12 @@ background-color: #8dbdd8;
 .report:hover {
     background-color: lightblue;
     cursor: pointer;
+}
+
+
+/* Rules for the map */
+.map {
+    border: black solid 1px;
+    margin-left: auto;
+    margin-right: auto;
 }
