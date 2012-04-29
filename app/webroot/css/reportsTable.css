@@ -39,6 +39,14 @@ background-color: #8dbdd8;
 }
 
 
+.tableImage {
+    max-width: 100px;
+    max-height: 64px;
+}
+
+
+
+/* Rules for highlighting based on report status */
 .rejected {
     background-color: crimson;
 }
@@ -51,6 +59,9 @@ background-color: #8dbdd8;
     background-color: silver;
 }
 
+
+
+/* Rules for interactive visualisation */
 .report:hover {
     background-color: lightblue;
     cursor: pointer;

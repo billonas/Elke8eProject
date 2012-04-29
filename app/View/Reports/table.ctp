@@ -64,10 +64,10 @@
                             {
                                 switch ($report['Report']['state'])
                                 {
-                                    case "eparkhs":
+                                    case "confirmed":
                                         $reportStatus = "verified";
                                         break;
-                                    case "aneparkhs":
+                                    case "unreliable":
                                         $reportStatus = "rejected";
                                         break;
                                     case "unknown":
