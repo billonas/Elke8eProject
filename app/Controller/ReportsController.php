@@ -76,7 +76,7 @@ class ReportsController extends AppController{
                         //webroot/img/reports
 			            $newName = "../webroot/img/reports/$newNameId.$tok";  
 			            rename("../webroot$name", $newName);
-			            $this->Report->saveField("main_photo", $newName); //allazw to onoma ths eikonas katallhla
+			            $this->Report->saveField("main_photo", "reports/$newNameId.$tok"); //allazw to onoma ths eikonas katallhla
                         $this->Session->setFlash('The Report has been saved');
                         $this->redirect('table');
                     } 
