@@ -50,7 +50,7 @@
                             <th>Φωτογραφία Παρατήρησης</th>
                             <th>Κατηγορία</th>
                             <th>Δημοφηλές Eίδος</th>
-                            <th>Κατάσταση</th>
+<!--                            <th>Κατάσταση</th>-->
                             <th>Τελευταία Επεξεργασία</th>
                             <th>Ενέργειες</th>
                         </tr>
@@ -96,11 +96,11 @@
                                             echo $report['HotSpecie']['scientific_name'];
                                     ?>
                                 </td>
-                                <td>
+<!--                                <td>
                                     <?php
                                         echo $report['Report']['state'];
                                     ?>
-                                </td>
+                                </td>-->
                                 <td>
                                     <?php
                                         if ( isset($report['Last_edited_by']) )
