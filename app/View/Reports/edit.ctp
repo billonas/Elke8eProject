@@ -61,6 +61,8 @@
                         </div>
                         <div id="fragment-3">
                             <?php
+                                echo $this->Html->image($report['Report']['additional_photo1']);
+                                echo $this->Html->image($report['Report']['additional_photo2']);
                                 $options = array();
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');

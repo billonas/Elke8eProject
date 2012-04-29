@@ -13,8 +13,6 @@
 <script>
   $(document).ready(function() {
     $("#tabs").tabs();
-    $( ".selector" ).datepicker({ altFormat: "yy-mm-dd" });
-    $("#date").datepicker();
   });
 </script>
 
@@ -76,17 +74,6 @@
                            if(isset($cropped)){ 
                                 echo $this->Form->input('date',array('label'=>'Ημερομηνία Παρατήρησης'));
                                 echo '<br/>';
-                                echo $this->GoogleMapV3->map(array('map'=>array(
-                                'defaultLat' => 39, # only last fallback, use Configure::write('Google.lat', ...); to define own one
-                                'defaultLng' => 21, # only last fallback, use Configure::write('Google.lng', ...); to define own one
-                                'defaultZoom' => 5,
-                                ),'div'=>array('id'=>'my_map', 'height'=>'400', 'width'=>'400')));
-                                $options = array(
-                                'lat'=>39,
-                                'lng'=>21,
-                                );
-                                $this->GoogleMapV3->addMarker($options);
-                                echo $this->GoogleMapV3->script(); 
                                 echo $this->Form->input('observation_site',array("label" => "Συντεταγμένες Τοποθεσίας",'placeholder' => 'Συντεταγμένες ή Βάλτε μια κουκίδα Google Maps'));
 
                            }?>
@@ -94,9 +81,11 @@
                         <div id="fragment-3">
                             <?php
                             if(isset($cropped)){ 
-                                echo $this->Form->input('image2',array("type" => "file",'label'=>'Επιπλέον Φωτογραφία 1'));  
+                                echo $this->Form->input('image2',array("type" => "file",'label'=>'Επιπλέον Φωτογραφία 1'));
                                 echo $this->Form->input('image3',array("type" => "file",'label'=>'Επιπλέον Φωτογραφία 2'));
-                                echo '</br>';
+                                echo $this->Form->input('additional_photo1',array('type'=>'hidden'));
+                                echo $this->Form->input('additional_photo2',array('type'=>'hidden'));
+                                echo '<br/>';
                                 $options = array();
                                 $options['1']  = $this->Html->image('hotspecies/1.jpg');
                                 $options['2']  = $this->Html->image('hotspecies/2.gif');

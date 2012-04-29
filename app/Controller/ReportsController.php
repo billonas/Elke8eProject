@@ -28,22 +28,22 @@ class ReportsController extends AppController{
     function create() {
         if (!empty($this->data)) {
             if(isset($this->data['Report']['image'])){
-            	// CHECK IF THE INPUT FILE IS IMAGE FILE FORMAT
+            	// CHECK IF INPUT FILE IS IMAGE FORMAT
             	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
   			$this->Session->setFlash('Παρακαλώ εισάγετε μία κανονική φωτογραφία');
                         $this->redirect('create');
                 }
-                //FIND FILE EXTENSION
+                // FIND FILE EXTENSION
     	        $tok = strtok (  $this->request->data['Report']['image']['name'], "." );
                 while(($tok1 = strtok(".")) !== false){
-			        $tok = $tok1;      		
-		        }
-                //FIND A RANDOM NAME WHICH DOESNT BELONG TO ANY OTHER FILE ON TEMPORARY DIR        
+                        $tok = $tok1;      		
+                }
+                // FIND A RANDOM NUMBER,WHICH DOESNT EXIST ON TEMPORARY DIR FILES IN ORDER TO NAME THE FILE
                 do{ 
                     $rand = rand();
                         $name = "$rand.$tok";		
                 }while(file_exists("../webroot/img/temporary/$name"));
-                //CHANGE THE NAME OF THE FILE TO THE RANDOM ONE
+                // RENAME THE FILE
                 $this->request->data['Report']['image']['name'] = $name;
                 $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image'], '/img/temporary/', ''); 
                 $this->set('uploaded',$uploaded); 
@@ -55,7 +55,6 @@ class ReportsController extends AppController{
             }
             else{
                 if(isset($this->data['Report']['x1'])){
-                    //CROP MAGE ACCORDING TO INPUT
                     $this->JqImgcrop->cropImage($this->data['Report']['w'], $this->data['Report']['x1'], $this->data['Report']['y1'], $this->data['Report']['x2'], $this->data['Report']['y2'], $this->data['Report']['w'], $this->data['Report']['h'], $this->data['Report']['imagePath'], $this->data['Report']['imagePath']);
                     $imagePath = $this->data['Report']['imagePath'];
                     $cropped = true;
@@ -65,24 +64,25 @@ class ReportsController extends AppController{
                 else{
                     $this->Report->create();
                     if ($this->Report->save($this->data['Report'])) {
-                        //RENAME IMAGE FILE WITH THE NAME OF THE RECORD AND MOVE IT TO REPORTS DIR
-                        $name = $this->data['Report']['main_photo'];  
-                        $newNameId = $this->Report->id;  
-                        $tok = strtok ($name, "." );
+                        $name = $this->data['Report']['main_photo'];
+                        $newNameId = $this->Report->id;
+                                $tok = strtok (  $name, "." );
                         while(($tok1 = strtok(".")) !== false){
-                            $tok = $tok1;      		
+                                $tok = $tok1;      		
                         }
-			//RENAME IMAGE FILE WITH THE NAME OF THE RECORD AND MOVE IT TO REPORTS DIR
+			// RENAME THE FILE ACCORDING TO RECORD ID AND MOVE IT TO REPORTS DIR
                         $newName = "../webroot/img/reports/$newNameId.$tok";  
                         rename("../webroot$name", $newName);
-                        $this->Report->saveField("main_photo", "reports/$newNameId.$tok"); 
+                        $this->Report->saveField("main_photo", "reports/$newNameId.$tok");
                         $this->Session->setFlash('The Report has been saved');
-                        //UPLOAD EXTRA IMAGE FILES, IF THERE ARE.
+                        // UPLOAD ADDITIONAL PHOTOS
 //                        if(isset($this->data['Report']['image2'])){
-//                            $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image2'], '/img/temporary/', ''); 
+//                            $uploaded2 = $this->JqImgcrop->uploadImage($this->data['Report']['image2'], '/img/temporary/', '');
+//                            $this->Report->saveField("additional_photo1",$uploaded2['imagePath']);
 //                        }
 //                        if(isset($this->data['Report']['image3'])){
-//                            $uploaded = $this->JqImgcrop->uploadImage($this->data['Report']['image3'], '/img/temporary/', ''); 
+//                            $uploaded3 = $this->JqImgcrop->uploadImage($this->data['Report']['image3'], '/img/temporary/', '');
+//                            $this->Report->saveField("additional_photo2",$uploaded3['imagePath']);
 //                        }
                         $this->redirect('table');
                     } 

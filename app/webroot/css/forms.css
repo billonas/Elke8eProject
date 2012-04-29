@@ -57,13 +57,22 @@ label {
 	font-size: 110%;
 	margin-bottom:3px;
 }
-input, textarea {
+input{
 	clear: both;
 	font-size: 140%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
 	padding: 1%;
 	width:98%;
 }
+/** INPUT TEXT CSS **/
+textarea,input[type=text]{
+        border: 1px solid #666;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        width: 80%;
+} 
+
 select {
 	clear: both;
 	font-size: 120%;
