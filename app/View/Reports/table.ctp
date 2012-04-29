@@ -36,6 +36,7 @@
             //echo $this->GoogleMapV3->script(); ?>
             <br/>
             <h2><center>Πίνακας Αναφορών</center></h2>
+            <br/>
             
             <?php echo $this->Session->flash(); ?>
             <?php if (empty($reports)): ?>

@@ -39,6 +39,12 @@ background-color: #8dbdd8;
 }
 
 
+h2 {
+    color: rgb(56, 59, 63);
+    text-decoration: none;
+    font-family: Helvetica,sans-serif;
+}
+
 .tableImage {
     max-width: 100px;
     max-height: 64px;
