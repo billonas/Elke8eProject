@@ -27,10 +27,6 @@ class ReportsController extends AppController{
 
     function create() {
         if (!empty($this->data)){
-            if (($this->data['Report']['image']['name']=='')){
-                
-            }
-            else
             if(isset($this->data['Report']['image'])){
             	// CHECK IF INPUT FILE IS IMAGE FORMAT
 //            	if(!$this->checkImage($this->data['Report']['image']['tmp_name'])){
@@ -108,12 +104,14 @@ class ReportsController extends AppController{
             }
             if(empty($this->data)) {
                 $this->data = $this->Report->findById($id);
+                $categories = ClassRegistry::init('Category')->find('all');
                 if(empty($this->data)){
                     $this->Session->setFlash('Invalid ID');
                     $this->redirect('table');
                 }
                 $report = $this->data;
                 $this->set('report',$report);
+                $this->set('categories',$categories);
             } 
             else {
                 if ($this->Report->save($this->data)) {
@@ -134,7 +132,7 @@ class ReportsController extends AppController{
 //        if($this->Session->check('User')&&($this->Session->read('User.user_type') == 'yperanalyst')){
           if (!$id) {
              //$this->Session->setFlash('Invalid id for Task');
-             $this->redirect(array('controller'=>'Reports', 'action'=>'table'));
+             $this->redirect('table');
           }
           $report = $this->Report->findById($id); //pernw ta stoixeia gia na brw pithana media(eikones)
           if ($this->Report->delete($id)) {

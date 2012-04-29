@@ -113,9 +113,12 @@
                         <div id="fragment-6">
                             <?php  
                                 echo '<br/>';
-//                                $options = array('-' => 'Άγνωστο', '1' => 'Ψάρι','2' => 'Κεφαλόποδο');  
-//                                echo $this->Form->input('category_id', array('options' => $options, 'default' => '-','label'=>'Κατηγορία Είδους'));
-//                                echo '<br/>';
+//                                $options['-']= array('value'=>$category['-']);
+//                                foreach ($categories as $category): 
+//                                $options[$category['Category']['category_name']]= array('value'=>$category['Category']['category_name']);
+//                                endforeach;
+//                                echo $this->Form->input('category_id', array('options' => $options,'label'=>'Κατηγορία Είδους'));
+                                echo '<br/>';
                                 echo $this->Form->input('scientific_name',array("label" => "Επιστημονική Ονομασία",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));
                                 echo '<br/>';
                                 echo $this->Form->input('analyst_comments',array("label" => "Σχόλια-Παρατηρήσεις",'placeholder' => 'Κεφαλαία Γράμματα Ελληνικά ή Λατινικά'));

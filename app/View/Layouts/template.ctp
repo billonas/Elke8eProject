@@ -50,7 +50,7 @@
 											echo $this->Form->create('User', array('action' => 'login'));
 											echo '<h1>Σύνδεση χρήστη</h1>';
 											echo '<p>'.$this->Form->input('User.username', 
-												  array('label' => array('class' => 'uname', 'text' => 'To e-mail σας </br>', 'data-icon' => 'u'), 'div' => false, 'type' => 'text',
+												  array('label' => array('class' => 'uname', 'text' => 'To e-mail σας ', 'data-icon' => 'u'), 'div' => false, 'type' => 'text',
 														'required' => 'required', 'id'=> 'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
 												  
 											echo '</br><p>'.$this->Form->input('User.password', 
@@ -76,10 +76,10 @@
 						
 						
 					</li>
-					<li><a href="#">Επικοινωνία</a></li>
-                                        <li><a href="#">Βοήθεια</a></li>
-					<li><a href="#">Οι Σκοπόι μας</a></li>
-					<li><a href="#">Αρχική</a></li>
+					<li><?php echo $this->Html->link('Επικοινωνία', array('controller' => 'pages', 'action'=>'communication'));?></li>
+                                        <li><?php echo $this->Html->link('Βοήθεια', array('controller' => 'pages', 'action'=>'help'));?></li>
+					<li><?php echo $this->Html->link('Οι σκοποί μας', array('controller' => 'pages', 'action'=>'about'));?></li>
+					<li><?php echo $this->Html->link('Αρχική', array('controller' => 'pages', 'action'=>'display'));?></li>
                     
 					    
 						

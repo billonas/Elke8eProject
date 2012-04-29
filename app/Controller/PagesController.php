@@ -41,6 +41,17 @@ class PagesController extends AppController{
 		$this->render(implode('/', $path));
 	}
 	
+	function about(){
+		
+	}
+	
+	function help(){
+		
+	}
+	
+	function communication(){
+		
+	}
     
 }
 

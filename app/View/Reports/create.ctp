@@ -22,6 +22,7 @@
 		 <![endif]-->
 	</head>
 	<body>
+                <?php echo $this->Session->flash();?>  
 		<div class="middle_row">
         	<div class="middle_wrapper">   
                 <div id="tabs">
