@@ -20,10 +20,10 @@
 		 <![endif]-->
 	</head>
 	<body>
-    	
+                <?php echo $this->Session->flash();?>    
 		<div class="middle_row">
         	<div class="middle_wrapper">
-                <?php echo $this->Session->flash();?>    
+                
                 <div id="tabs">
                     <ul>
                         <li><a href="#fragment-1">1. Φωτογραφία<br/> παρατήρησης</a></li>
