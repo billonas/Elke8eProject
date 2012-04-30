@@ -5,42 +5,47 @@
 				<div class="register" align="center">
 			 		<br><h1>Εγγραφή χρήστη</h1></br>
                     
-					<?php echo $this->Form->create('Reg', array('action' => 'register'));?>
+					<?php echo $this->Form->create('User', array('action' => 'register'));?>
+               <?php echo $this->Session->flash().'</br>'; ?> 
 					<?php 
-					echo '<p>'.$this->Form->input('Reg.name', 
-									      array('label' => array('class' => 'name', 'text' => 'Όνομα:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserName')).'</p>';
+					echo '<p>'.$this->Form->input('User.name', 
+									      array('label' => array('class' => 'name', 'text' => 'Όνομα:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserName')).'</p>';
 										  
-				    echo '</br><p>'.$this->Form->input('Reg.surname', 
-									      array('label' => array('class' => 'surname', 'text' => 'Επώνυμο:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserSurame')).'</p>';
+				    echo '</br><p>'.$this->Form->input('User.surname', 
+									      array('label' => array('class' => 'surname', 'text' => 'Επώνυμο:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserSurame')).'</p>';
 										  
-				    echo '</br><p>'.$this->Form->input('Reg.phone', 
-									      array('label' => array('class' => 'phone', 'text' => 'Τηλέφωνο:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserSurame')).'</p>';
+				    echo '</br><p>'.$this->Form->input('User.phone_number', 
+									      array('label' => array('class' => 'phone', 'text' => 'Τηλέφωνο:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserSurame')).'</p>';
 					
-					echo '</br><p>'.$this->Form->input('Reg.username', 
-									      array('label' => array('class' => 'uname', 'text' => 'e-mail:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
+					echo '</br><p>'.$this->Form->input('User.email', 
+									      array('after'=>$this->Form->error('email_unique', 'H συγκεκριμένη διεύθυνση ηλεκτρονικού ταχυδρομείου χρησιμοποιείται ήδη. Παρακαλώ δοκιμάστε άλλη.'),'label' => array('class' => 'mail', 'text' => 'e-mail:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserEmail', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
 										  
-				    echo '</br><p>'.$this->Form->input('Reg.password', 
+				    echo '</br><p>'.$this->Form->input('User.password', 
 									      array('label' => array('class' => 'youpasswd', 'text' => 'Κωδικός:  '), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    												'id'=> 'UserPassword')).'</p>';	
 										  
-				    echo '</br><p>'.$this->Form->input('Reg.passwordConfirm', 
+				    echo '</br><p>'.$this->Form->input('User.passwordConfirm', 
 									      array('label' => array('class' => 'youpasswdcfm', 'text' => 'Επαναλάβετε τον Κωδικό:  '), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    												'id'=> 'UserPasswordCfm')).'</p>';			  
-					echo '</br><p>'.$this->Form->input('Reg.address', 
-									      array('label' => array('class' => 'address', 'text' => 'Διεύθυνση:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserAddress')).'</p>';
-					echo '</br><p>'.$this->Form->input('Reg.city', 
-									      array('label' => array('class' => 'city', 'text' => 'Πόλη:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserCity')).'</p>';	
-					echo '</br><p>'.$this->Form->input('Reg.country', 
-									      array('label' => array('class' => 'country', 'text' => 'Χώρα:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserCountry')).'</p>';
-					echo '</br><p>'.$this->Form->input('Reg.age', 
-									      array('label' => array('class' => 'age', 'text' => 'Ηλικία:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserAge')).'</p>';	
-					$options = array('-'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','uptothird' => 'Τριτοβάθμια');  
-					echo '</br><p>'.$this->Form->input('Reg.education', 
-									      array('options' => $options, 'default' => '  -  ', 'label' => array('class' => 'education', 'text' => 'Εκπαίδευση:  '), 'div' => false, 'required' => 'required', 'id'=> 												 												'UserEducation')).'</p>';										  									  									  
-					$options = array('-'=>'-','fisherman' => 'Ψαράς', 'ditis' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο'); 					  
-					echo '</br><p>'.$this->Form->input('Reg.membership', 
-									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'required' => 'required', 'id'=> 												 												'UserMembership')).'</p>';										  	
+					echo '</br><p>'.$this->Form->input('User.address', 
+									      array('label' => array('class' => 'address', 'text' => 'Διεύθυνση:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserAddress')).'</p>';
+					echo '</br><p>'.$this->Form->input('User.city', 
+									      array('label' => array('class' => 'city', 'text' => 'Πόλη:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCity')).'</p>';	
+					echo '</br><p>'.$this->Form->input('User.country', 
+									      array('label' => array('class' => 'country', 'text' => 'Χώρα:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCountry')).'</p>';
+					echo '</br><p>'.$this->Form->input('User.birth_date', 
+									      array('label' => array('class' => 'age', 'text' => 'Ημ/νία γέννησης:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserAge')).'</p>';	
+					$options = array('noValue'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','third' => 'Τριτοβάθμια');  
+					echo '</br><p>'.$this->Form->input('User.education', 
+									      array('options' => $options, 'default' => '  -  ', 'label' => array('class' => 'education', 'text' => 'Εκπαίδευση:  '), 'div' => false, 'id'=> 												 												'UserEducation')).'</p>';										  									  									  
+					$options = array('noValue'=>'-','fisher' => 'Ψαράς', 'diver' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο'); 					  
+					echo '</br><p>'.$this->Form->input('User.membership', 
+									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'id'=> 												 												'UserMembership')).'</p>';	
+					echo '</br>';					  
+					echo $this->Html->Image($this->Html->url(array('controller'=>'users', 'action'=>'captcha'), true),array('style'=>'','vspace'=>2)); 
+					echo '</br><p>'.$this->Form->input('User.captcha', 
+									  array('label' => array('class' => 'captcha', 'text' => 'Γράψτε αυτά που βλέπετε στην εικόνα:  '), 'autocomplete'=>'off', 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCaptcha', 'error'=>__('Failed validating code',true))).'</p>';		  	
 
 										  echo '</br><p>'.$this->Form->end(array(
-														'name' => 'data[Reg][register]',
+														'name' => 'data[User][register]',
 														'label' => 'Εγγραφή',
 														'div' => false )).'</p>';									  
 								    ?>
