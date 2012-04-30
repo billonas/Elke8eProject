@@ -20,12 +20,10 @@
         window.location.href = '/reports/edit/' + id;
     }
 </script>
-<?php echo $this->Session->flash(); ?>
 <div class="middle_row">
     <div class="middle_wrapper">
         <div>
-            <br/>
-            <h2><center>Πίνακας Αναφορών</center></h2>
+            <?php echo $this->Session->flash(); ?>
             <br/>
             
             <?php
@@ -42,10 +40,10 @@
                 echo $this->GoogleMapV3->script();
             ?>
             <br/>
-            
-            <?php echo $this->Session->flash(); ?>
+            <h2><center>Πίνακας Αναφορών</center></h2>
+            <br/>
             <?php if (empty($reports)): ?>
-                There are no reports
+                <h2><center>There are no reports</center></h2>
             <?php else: ?>
 
                 <?php //Print_r($reports[0]); ?>
