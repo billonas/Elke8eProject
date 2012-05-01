@@ -1,21 +1,13 @@
-<html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="content-language" content="en-gb" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<title>Αναφορά Παρατήρησης</title>
-		<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default','forms'));	
-                ?>
-                <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'));?>
-                <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<?php echo $this->Html->css(array('main','jquery-ui','imgareaselect-default','forms'),null, array('inline'=>false));	?>
+        <?php echo $this->Html->script(array('jquery.min','jquery-ui.min','jquery.imgareaselect.pack.js'), array('inline'=>false));?>
+                
+	    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 
 var map;
 var marker;
 var once=true;
-var x;
-var y;
-
 
 function updateMarkerPosition(latLng) {
 
@@ -23,17 +15,18 @@ function updateMarkerPosition(latLng) {
     latLng.lat(),
     latLng.lng()
   ].join(', ');
-  x=latLng.lat();
-  y=latLng.lng();
-  document.forms["ReportCreateForm"].elements["data[Report][observation_site]"].value = [x,y].join(', ');
+  document.forms["ReportCreateForm"].elements["data[Report][observation_site]"].value = latLng.toUrlValue();
 }
 
 
-function initialize() {
-  var latLng = new google.maps.LatLng(38.0397, 24.644);
+
+
+
+function handleApiReady() {
+  var centerlatLng = new google.maps.LatLng(38.0397, 24.644);
   map = new google.maps.Map(document.getElementById('mapCanvas'), {
     zoom: 6,
-    center: latLng,
+    center: centerlatLng,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
 	mapTypeControl: true,
     mapTypeControlOptions: {
@@ -100,7 +93,20 @@ function toggleBounce() {
 }
 
 // Onload handler to fire off the app.
-google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+function appendBootstrap() {
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=handleApiReady";
+
+
+document.body.appendChild(script);
+once=true;
+document.getElementById('info').innerHTML = "";
+
+} 
 
 
 </script>
@@ -108,12 +114,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
   $(document).ready(function() {
     $("#tabs").tabs();
   });
-</script>
+  </script>
 		<!--[if lt IE 10 ]>
 			<link rel="stylesheet" href="hacks.css" type="text/css" media="screen" />
 		 <![endif]-->
-	</head>
-	<body>
+	
                 <style>
                     #mapCanvas {
                         width: 500px;
@@ -136,7 +141,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     <ul>
                         <li><a href="#fragment-1">1. Φωτογραφία<br/> παρατήρησης</a></li>
                         <?php  if(isset($cropped)){ 
-                  echo '<li><a href="#fragment-2"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
+                  echo '<li><a href="#fragment-2" onClick="appendBootstrap()"><span>2. Βασικές Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-3"><span>3. Επιπλέον Πληροφορίες <br/>Παρατήρησης</span></a></li>
                         <li><a href="#fragment-4"><span>4. Στοιχεία <br/>Παρατηρητή</span></a></li>  
                         <li><a href="#fragment-5"><span>5. Στοιχεία <br/>Επικοινωνίας</span></a></li> ';
@@ -254,5 +259,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <div class="comments">
             <div><br />Powered by <a href="http://cakephp.org/">Cake.php</a>, <a href="http://jquery.com/">jQuery</a> and <a href="http://modernizr.com/">Modernizr</a>.</div>
         </div>
-	</body>
-</html>
+	
