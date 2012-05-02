@@ -10,7 +10,13 @@
 		<!--[if lt IE 10 ]>
 			<?php 	echo $this->Html->css(array('hacks'), null, array('media' => 'screen')); 	?>
 		 <![endif]-->
-         
+                <!--[if gte IE 9]>
+                  <style type="text/css">
+                    .gradient {
+                       filter: none;
+                    }
+                  </style>
+                <![endif]-->
 
          
 	</head>
@@ -40,27 +46,44 @@
 										if($this->Session->check('UserUsername')) {
 											echo '<h1>Καλώς ήλθατε</h1>';
 											
-											echo $this->Html->link('Προβολή προσωπικού προφίλ', array('controller' => 'users', 'action'=>'edit'));
-											echo '</br></br>';
-											echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
+											if(!strcmp($this->Session->read('UserType'),'simple')) {//simple
+												echo $this->Html->link('Προσωπικό προφίλ', array('controller' => 'users', 'action'=>'edit'));
+												echo '</br></br>';
+												echo $this->Html->link('Ιστορικό αναφορών', array('controller' => 'users', 'action'=>'myreports'));
+												echo '</br></br>';
+												echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
+											}
+											else if(!strcmp($this->Session->read('UserType'),'analyst')) {//analyst
+												echo $this->Html->link('Πίνακας αναφορών', array('controller' => 'reports', 'action'=>'table'));
+												echo '</br></br>';
+												echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
+											}
+											else if(!strcmp($this->Session->read('UserType'),'yperanalyst')) {//superanalyst
+												echo $this->Html->link('Πίνακας υπεραναλυτή', array('controller' => 'users', 'action'=>false));
+												echo '</br></br>';
+												echo $this->Html->link('Πίνακας αναφορών', array('controller' => 'reports', 'action'=>'table'));
+												echo '</br></br>';
+												echo $this->Html->link('Αποσύνδεση', array('controller' => 'users', 'action'=>'logout'));
+											}
                            
 									    }
 										else{
 											
 											echo $this->Form->create('User', array('action' => 'login'));
 											echo '<h1>Σύνδεση χρήστη</h1>';
-											echo '<p>'.$this->Form->input('User.username', 
-												  array('label' => array('class' => 'uname', 'text' => 'To e-mail σας ', 'data-icon' => 'u'), 'div' => false, 'type' => 'text',
-														'required' => 'required', 'id'=> 'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
+											echo '<p>'.$this->Form->input('User.login_email', 
+												  array('label' => array('class' => 'uname std_form', 'text' => 'To e-mail σας </br>', 'data-icon' => 'u'), 'div' => false, 'type' => 'text',
+														'required' => 'required', 'id'=> 'UserUsername', 'placeholder' => 'π.χ. mymail@mail.com','class' => 'std_form')).'</p>';
 												  
-											echo '</br><p>'.$this->Form->input('User.password', 
-												  array('label' => array('class' => 'youpasswd', 'text' => 'O κωδικός σας  </br>', 'data-icon' => 'p'), 'div' => false, 'type' => 'password', 
-														'required' => 'required', 'id'=> 'UserPassword', 'placeholder' => 'π.χ. X8df!90EO')).'</p></br>';	
+											echo '</br><p>'.$this->Form->input('User.login_password', 
+												  array('label' => array('class' => 'youpasswd std_form', 'text' => 'O κωδικός σας  </br>', 'data-icon' => 'p'), 'div' => false, 'type' => 'password', 
+														'required' => 'required', 'id'=> 'UserPassword', 'placeholder' => 'π.χ. X8df!90EO','class' => 'std_form')).'</p></br>';	
 		
 											echo '<p>'.$this->Form->end(array(
 														'name' => 'data[User][login]',
 														'label' => 'Σύνδεση',
-														'div' => false )).'</p>';	
+														'div' => false,
+														'class' => 'std_form no_shadow' )).'</p>';	
 										    echo $this->Html->link('Δεν είστε μέλος? Εγγραφείτε τώρα!', array('controller' => 'users', 'action'=>'register'),array('class' => 'to_register'));
 										}
 								    ?>
