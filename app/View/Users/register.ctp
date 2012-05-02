@@ -1,69 +1,58 @@
 <?php $this->set('title_for_layout', 'Εγγραφή Χρήστη - ΕΛΚΕΘΕ');?> 
  
-    <div class="middle_row">
+    <div class="middle_row  big_row">
 			<div class="middle_wrapper">
-				<div class="register" align="center">
+				<div class="register_box login_box" align="center">
 			 		<br><h1>Εγγραφή χρήστη</h1></br>
                     
 					<?php echo $this->Form->create('User', array('action' => 'register'));?>
-               <?php echo $this->Session->flash().'</br>'; ?> 
+               <div class="flash_box"<?php echo $this->Session->flash().'</br>'; ?> </div>
+                                        <table>
 					<?php 
-					echo '<p>'.$this->Form->input('User.name', 
-									      array('label' => array('class' => 'name', 'text' => 'Όνομα:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserName')).'</p>';
+					echo '<tr><td><label for="UserName" class="name std_form">Όνομα: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.name', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=> 'UserName','placeholder' => 'π.χ. Κακομοίρης','class' => ' std_form blue_shadow')).'</p></td></tr>';
 										  
-				    echo '</br><p>'.$this->Form->input('User.surname', 
-									      array('label' => array('class' => 'surname', 'text' => 'Επώνυμο:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserSurame')).'</p>';
+				    echo '<tr><td><label for="UserSurname" class="surname std_form">Επώνυμο: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.surname', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=> 'UserSurame','placeholder' => 'π.χ. Κακομοίρογλου','class' => ' std_form blue_shadow')).'</p></td></tr>';
 										  
-				    echo '</br><p>'.$this->Form->input('User.phone_number', 
-									      array('label' => array('class' => 'phone', 'text' => 'Τηλέφωνο:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserSurame')).'</p>';
+				    echo '<tr><td><label for="UserPhone" class="phone std_form">Τηλέφωνο: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.phone_number', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=> 'UserPhone','placeholder' => 'π.χ. 234385497','class' => ' std_form blue_shadow')).'</p></td></tr>';
 					
-					echo '</br><p>'.$this->Form->input('User.email', 
-									      array('after'=>$this->Form->error('email_unique', 'H συγκεκριμένη διεύθυνση ηλεκτρονικού ταχυδρομείου χρησιμοποιείται ήδη. Παρακαλώ δοκιμάστε άλλη.'),'label' => array('class' => 'mail', 'text' => 'e-mail:  '), 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 												 												'UserEmail', 'placeholder' => 'π.χ. mymail@mail.com')).'</p>';
+					echo '<tr><td><label for="UserEmail" class="mail std_form">e-mail: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.email', 
+									      array('after'=>$this->Form->error('email_unique', 'H συγκεκριμένη διεύθυνση ηλεκτρονικού ταχυδρομείου χρησιμοποιείται ήδη. Παρακαλώ δοκιμάστε άλλη.'),'label' => false, 'div' => false, 'type' => 'text', 'required' => 'required', 'id'=> 'UserEmail', 'placeholder' => 'π.χ. mymail@mail.com','class' => ' std_form blue_shadow')).'</p></td></tr>';
 										  
-				    echo '</br><p>'.$this->Form->input('User.password', 
-									      array('label' => array('class' => 'youpasswd', 'text' => 'Κωδικός:  '), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    												'id'=> 'UserPassword')).'</p>';	
+				    echo '<tr><td><label for="UserPassword" class="youpasswd std_form">Κωδικός: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.password', 
+									      array('label' => false, 'div' => false, 'type' => 'password', 'required' => 'required', 'id'=> 'UserPassword','placeholder' => 'example111','class' => 'std_form blue_shadow')).'</p></td></tr>';	
 										  
-				    echo '</br><p>'.$this->Form->input('User.passwordConfirm', 
-									      array('label' => array('class' => 'youpasswdcfm', 'text' => 'Επαναλάβετε τον Κωδικό:  '), 'div' => false, 'type' => 'password', 'required' => 'required',  		 											    												'id'=> 'UserPasswordCfm')).'</p>';			  
-					echo '</br><p>'.$this->Form->input('User.address', 
-									      array('label' => array('class' => 'address', 'text' => 'Διεύθυνση:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserAddress')).'</p>';
-					echo '</br><p>'.$this->Form->input('User.city', 
-									      array('label' => array('class' => 'city', 'text' => 'Πόλη:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCity')).'</p>';	
-					echo '</br><p>'.$this->Form->input('User.country', 
-									      array('label' => array('class' => 'country', 'text' => 'Χώρα:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCountry')).'</p>';
-					echo '</br><p>'.$this->Form->input('User.birth_date', 
-									      array('label' => array('class' => 'age', 'text' => 'Ημ/νία γέννησης:  '), 'div' => false, 'type' => 'text', 'id'=> 												 												'UserAge')).'</p>';	
+				    echo '<tr><td><label for="UserPasswordCfm" class="youpasswdcfm std_form">Επαναλάβετε τον Κωδικό: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.passwordConfirm', 
+									      array('label' => false, 'div' => false, 'type' => 'password', 'required' => 'required', 'id'=> 'UserPasswordCfm','placeholder' => 'example111','class' => ' std_form blue_shadow')).'</p></td></tr>';			  
+					echo '<tr><td><label for="UserAddress" class="address std_form">Διεύθυνση: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.address', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=>	'UserAddress','placeholder' => 'π.χ Κολοπετινίτσας 100','class' => ' std_form blue_shadow')).'</p></td></tr>';
+					echo '<tr><td><label for="UserCity" class="city std_form">Πόλη: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.city', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=> 'UserCity','placeholder' => 'π.χ. Καβάλα','class' => ' std_form blue_shadow')).'</p></td></tr>';	
+					echo '<tr><td><label for="UserCountry" class="country std_form">Χώρα: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.country', 
+									      array('label' => false, 'div' => false, 'type' => 'text', 'id'=>'UserCountry','placeholder' => 'π.χ. Αλβανία.com','class' => ' std_form blue_shadow')).'</p></td></tr>';
+					echo '<tr><td><label for="UserAge" class="age std_form">Ημ/νία γέννησης: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td ><p>'.$this->Form->input('User.birth_date', 
+									      array('type'=>'date', 'empty'=>true, 'minYear'=>1901, 'maxYear'=>date('Y'), 'label' => false, 'div' => false, 'id'=>'UserAge','class' => ' std_form blue_shadow', 'escape' => false)).'</p></td></tr>';		
 					$options = array('noValue'=>'-','first' => 'Πρωτοβάθμια', 'second' => 'Δευτεροβάθμια','third' => 'Τριτοβάθμια');  
-					echo '</br><p>'.$this->Form->input('User.education', 
-									      array('options' => $options, 'default' => '  -  ', 'label' => array('class' => 'education', 'text' => 'Εκπαίδευση:  '), 'div' => false, 'id'=> 												 												'UserEducation')).'</p>';										  									  									  
+					echo '<tr><td><label for="UserEducation" class="education std_form"></br>Εκπαίδευση: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.education', 
+									      array('options' => $options, 'default' => '  -  ', 'label' => false, 'div' => false, 'id'=> 'UserEducation','placeholder' => 'π.χ. Δημοτικό','class' => ' std_form blue_shadow')).'</p></td></tr>';										  									  									  
 					$options = array('noValue'=>'-','fisher' => 'Ψαράς', 'diver' => 'Δύτης','tourist' => 'Τουρίστας','other' => 'Άλλο'); 					  
-					echo '</br><p>'.$this->Form->input('User.membership', 
-									      array('options'=> $options, 'label' => array('default' => '-', 'class' => 'membership', 'text' => 'Ιδιότητα:  '), 'div' => false, 'id'=> 												 												'UserMembership')).'</p>';	
-					echo '</br>';					  
+					echo '<tr><td><label for="UserMembership" default="-" class="membership std_form"></br>Ιδιότητα: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.membership', 
+									      array('options'=> $options, 'label' => false, 'div' => false, 'id'=>'UserMembership','class' => ' std_form blue_shadow')).'</p></td></tr></br>';	
+					echo '<tr><td></td><td style="float:left;"></br>';					  
 					echo $this->Html->Image($this->Html->url(array('controller'=>'users', 'action'=>'captcha'), true),array('style'=>'','vspace'=>2)); 
-					echo '</br><p>'.$this->Form->input('User.captcha', 
-									  array('label' => array('class' => 'captcha', 'text' => 'Γράψτε αυτά που βλέπετε στην εικόνα:  '), 'autocomplete'=>'off', 'div' => false, 'type' => 'text', 'id'=> 												 												'UserCaptcha', 'error'=>__('Failed validating code',true))).'</p>';		  	
-
-										  echo '</br><p>'.$this->Form->end(array(
+					echo '</td></tr>';
+					echo '<tr><td><label for="UserCaptcha" class="captcha std_form">Γράψτε αυτά που βλέπετε στην εικόνα: &nbsp;&nbsp;&nbsp;&nbsp;</label></td><td><p>'.$this->Form->input('User.captcha', 
+									  array('label' => false, 'autocomplete'=>'off', 'div' => false, 'type' => 'text', 'id'=> 'UserCaptcha', 'error'=>__('Failed validating code',true),'class' => ' std_form blue_shadow')).'</p></td></tr>';		  	
+                                        
+					?></table><?php					  
+                                        echo '</br><p>'.$this->Form->end(array(
 														'name' => 'data[User][register]',
 														'label' => 'Εγγραφή',
-														'div' => false )).'</p>';									  
+														'div' => false
+                                                                                                                ,'class' => ' std_form')).'</p>';									  
 								    ?>
 			    </div>
 			</div>
     </div>
-
-
-<!-- Όνομα
-• Επώνυμο
-• Τηλέφωνο(Αριθμός)
-• E-mail(Email Pattern)
-• Διεύθυνση(Γράμματα Ελληνικά-Λατινικά, Αριθμοί)
-• Πόλη(Γράμματα Ελληνικά-Λατινικά)
-• Χώρα(Λίστα Χωρών OHE)
-
-  Ηλικία(Αριθμός <= 2 ψηφία)
-• Εκπαίδευση(Λίστα Πρωτοβάθμια/Δευτεροβάθμια/Τριτοβάθμια+)
-• Ιδιότητα(Λίστα Ψαράς/Δύτης/Τουρίστας/Άλλο)
-
--->
