@@ -268,13 +268,13 @@ form{
 
 label.std_form{
 	font:100 .9em/.9em Arial, sans-serif;;
-	float:right;
+	
 }
 
 input.std_form[type="text"],
 input.std_form[type="password"],
 input.std_form[type="file"]{
-	float:left;
+	
     border: 1px solid rgb(178, 178, 178);
     box-sizing : content-box;
     border-radius: 3px;
